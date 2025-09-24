@@ -14,13 +14,9 @@
       --card: #ffffff;
     }
     body {margin:0; font-family: system-ui, Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.6;}
-    header {
-      background: linear-gradient(120deg, var(--brand), var(--accent));
-      padding: 12px 20px; color:#fff; position:sticky; top:0; box-shadow:0 2px 10px rgba(0,0,0,.1);
-    }
+    header {background: linear-gradient(120deg, var(--brand), var(--accent)); padding: 12px 20px; color:#fff; position:sticky; top:0; box-shadow:0 2px 10px rgba(0,0,0,.1);}
     .wrap { max-width:1100px; margin:0 auto; padding:0 16px; }
     .brand { display:flex; align-items:center; gap:12px; }
-    .brand img { height:40px; }
     nav a { color:#fff; text-decoration:none; margin-left:18px; font-weight:600; }
     nav a:hover { text-decoration:underline; }
     .hero { padding:50px 0; background:#fff; border-bottom:1px solid #e0ebf5; text-align:center; }
@@ -116,7 +112,7 @@
 </section>
 
 <footer>
-  <p>© <span id="year"></span> Urban Freight Inc. • MC #1325198 • USDOT #3742284 • Fresno, CA</p>
+  <p>© <span id="year"></span> Urban Freight Inc. • MC #1325198 • USDOT #3742284 • Fresno, CA • <a href="privacy.html">Privacy Policy</a></p>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </footer>
 </body>

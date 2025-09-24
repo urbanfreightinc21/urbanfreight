@@ -3,31 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Urban Freight Inc. — Reliable Transport</title>
+  <title>Urban Freight Inc.</title>
   <meta name="description" content="Urban Freight Inc. — California-based carrier providing reliable transport with 24/7 dispatch and professional drivers.">
   <style>
     :root {
-      --brand: #3ea0ff; /* lighter blue */
+      --brand: #3ea0ff;
       --accent: #66b3ff;
-      --muted: #8bb9e6;
       --bg: #f7faff;
       --text: #0d1a26;
       --card: #ffffff;
     }
-    body {
-      margin:0; font-family: system-ui, Arial, sans-serif; background: var(--bg); color: var(--text); line-height:1.6;
-    }
+    body {margin:0; font-family: system-ui, Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.6;}
     header {
       background: linear-gradient(120deg, var(--brand), var(--accent));
-      padding: 14px 20px; color:#fff; position:sticky; top:0; box-shadow:0 2px 10px rgba(0,0,0,.1);
+      padding: 12px 20px; color:#fff; position:sticky; top:0; box-shadow:0 2px 10px rgba(0,0,0,.1);
     }
-    .wrap { max-width: 1100px; margin:0 auto; padding:0 16px; }
+    .wrap { max-width:1100px; margin:0 auto; padding:0 16px; }
     .brand { display:flex; align-items:center; gap:12px; }
-    .brand img { height:50px; }
+    .brand img { height:40px; }
     nav a { color:#fff; text-decoration:none; margin-left:18px; font-weight:600; }
     nav a:hover { text-decoration:underline; }
-    .hero { padding:60px 0; background:#fff; border-bottom:1px solid #e0ebf5; text-align:center; }
-    .hero h1 { font-size:clamp(28px,4vw,44px); margin:0 0 12px; color:var(--brand); }
+    .hero { padding:50px 0; background:#fff; border-bottom:1px solid #e0ebf5; text-align:center; }
+    .hero img { max-width:220px; height:auto; margin-bottom:18px; }
+    .hero h1 { font-size:clamp(32px,5vw,48px); margin:0 0 12px; color:var(--brand); }
     .hero p { font-size:18px; color:#334; margin:0 0 20px; }
     .cta a { display:inline-block; margin:6px; padding:12px 18px; border-radius:10px; font-weight:700; text-decoration:none; }
     .btn { background:var(--brand); color:#fff; }
@@ -42,7 +40,6 @@
 <header>
   <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;">
     <div class="brand">
-      <img src="logo.png" alt="Urban Freight Inc.">
       <strong>Urban Freight Inc.</strong>
     </div>
     <nav>
@@ -55,7 +52,8 @@
 
 <section class="hero">
   <div class="wrap">
-    <h1>Reliable Transport</h1>
+    <img src="logo.png" alt="Urban Freight Logo">
+    <h1>Urban Freight Inc.</h1>
     <p>California-based carrier with on-time delivery and professional drivers.</p>
     <div class="cta">
       <a class="btn" href="tel:+15598259890">Call Dispatch: (559) 825-9890</a>

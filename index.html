@@ -1,27 +1,541 @@
-# Urban Freight Inc.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Urban Freight Inc | Refrigerated Trucking & Freight Brokerage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #0b2447;
+      --primary-light: #19376d;
+      --accent: #00b4d8;
+      --bg: #f3f4f6;
+      --text: #1f2933;
+    }
 
-Refrigerated Trucking & Freight Brokerage – Fresno, California
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-Urban Freight Inc is a trucking carrier and freight brokerage based in Fresno, CA.
-We specialize in refrigerated freight and work with brokers, shippers, and carriers
-across the United States.
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
----
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-## SMS Notifications
+    /* Top nav */
+    .nav {
+      background: rgba(11, 36, 71, 0.96);
+      color: #fff;
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
 
-Enter your mobile number to receive one-time verification codes, password reset messages,
-and important shipment or broker alerts from Urban Freight Inc.
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-No marketing or promotional messages will be sent.
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-**By submitting your phone number, you agree to:**
+    .nav-logo {
+      height: 40px;
+      width: auto;
+    }
 
-- Receive SMS messages related to Urban Freight account security and operations  
-- Message & data rates may apply  
-- Message frequency varies based on account activity  
-- Reply **STOP** to unsubscribe or **HELP** for help  
+    .nav-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
 
----
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.95rem;
+    }
 
-[Privacy Policy](privacy.html) | [SMS Policy & Terms](sms-terms.html)
+    .nav-links a {
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #002033;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at top left, #1f4a8a, #050816);
+      color: #fff;
+      padding: 50px 16px 40px;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .hero-title {
+      margin-top: 8px;
+      font-size: clamp(2rem, 2.7vw + 1rem, 2.8rem);
+      font-weight: 700;
+    }
+
+    .hero-sub {
+      margin-top: 12px;
+      font-size: 1rem;
+      max-width: 520px;
+      opacity: 0.95;
+    }
+
+    .hero-tags {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .hero-cta-row {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #002033;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e5e7eb;
+      border: 1px solid rgba(229, 231, 235, 0.6);
+    }
+
+    .hero-note {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .hero-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 16px;
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero-stat-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    .hero-stat {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .hero-stat-label {
+      opacity: 0.7;
+      font-size: 0.75rem;
+    }
+
+    .hero-stat-value {
+      font-weight: 600;
+      margin-top: 2px;
+      font-size: 0.9rem;
+    }
+
+    /* Main sections */
+    .section {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding: 0 16px 8px;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .section p {
+      font-size: 0.95rem;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 24px;
+      margin-top: 12px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(203, 213, 225, 0.7);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: var(--primary-light);
+    }
+
+    .card ul {
+      margin-top: 6px;
+      padding-left: 18px;
+      font-size: 0.92rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e5f4ff;
+      color: #064663;
+    }
+
+    .by-numbers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .metric {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(203, 213, 225, 0.9);
+      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    .metric-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b7280;
+    }
+
+    .metric-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 4px;
+      color: var(--primary);
+    }
+
+    .metric-sub {
+      font-size: 0.85rem;
+      margin-top: 2px;
+      color: #4b5563;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
+    .contact-box {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 18px 12px 22px;
+      text-align: center;
+      font-size: 0.83rem;
+      color: #6b7280;
+      border-top: 1px solid rgba(209, 213, 219, 0.8);
+      background: #f9fafb;
+    }
+
+    footer a {
+      color: var(--primary-light);
+      margin: 0 6px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .split,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .hero {
+        padding-top: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <img src="logo.png" alt="Urban Freight Inc Logo" class="nav-logo" />
+        <div class="nav-title">Urban Freight Inc</div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#numbers">By the Numbers</a>
+        <a href="apply.html" class="nav-cta">Drive With Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-kicker">Refrigerated Truckload • West & Southwest</div>
+        <h1 class="hero-title">Reliable Capacity For Your Temperature-Controlled Freight.</h1>
+        <p class="hero-sub">
+          Urban Freight Inc is a Fresno, CA–based refrigerated carrier and freight brokerage.
+          We partner with shippers and brokers who need consistent, on-time service backed
+          by modern equipment and hands-on dispatch.
+        </p>
+        <p class="hero-tags">
+          MC &amp; DOT registered • Insured carrier • Reefer specialists
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="mailto:urbanfreightinc21@gmail.com" class="btn btn-primary">
+            Ship With Urban
+          </a>
+          <a href="apply.html" class="btn btn-outline">
+            Drive With Us
+          </a>
+        </div>
+
+        <p class="hero-note">
+          SMS is used only for security codes and operational alerts. No marketing texts.
+          See our <a href="privacy.html">Privacy Policy</a> and
+          <a href="sms-terms.html">SMS Policy &amp; Terms</a>.
+        </p>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-title">Operations Snapshot</div>
+        <div class="hero-stat-row">
+          <div class="hero-stat">
+            <div class="hero-stat-label">Primary Lanes</div>
+            <div class="hero-stat-value">CA ↔ AZ • NM • TX</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Equipment</div>
+            <div class="hero-stat-value">Reefers • Late-model tractors</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Freight</div>
+            <div class="hero-stat-value">Food • Beverage • Produce</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Support</div>
+            <div class="hero-stat-value">Hands-on dispatch</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ABOUT + SERVICES -->
+  <section class="section" id="about">
+    <h2>Excellence Delivered Across the West</h2>
+    <div class="split">
+      <div>
+        <p>
+          Urban Freight Inc was built by people who understand trucking from the ground up.
+          Based in Fresno, California, we focus on refrigerated freight and practical, direct
+          communication with brokers and shippers.
+        </p>
+        <p style="margin-top:6px;">
+          Whether it’s a single urgent load or a steady lane, our goal is simple:
+          keep your product moving safely, on temperature, and on time.
+        </p>
+      </div>
+      <div class="card" id="services">
+        <h3>Services</h3>
+        <ul>
+          <li>Refrigerated truckload (reefer)</li>
+          <li>Regional and long-haul lanes</li>
+          <li>Live load/unload and drop options (where available)</li>
+          <li>Brokerage solutions for additional coverage</li>
+        </ul>
+        <div class="pill-row">
+          <span class="pill">Temperature-controlled</span>
+          <span class="pill">Food &amp; beverage</span>
+          <span class="pill">Dedicated lanes (by request)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BY THE NUMBERS -->
+  <section class="section" id="numbers">
+    <h2>Urban Freight by the Numbers</h2>
+    <p style="font-size:0.95rem;">
+      We’re a focused, growing fleet with an emphasis on dependable refrigerated service and
+      tight communication. Update these stats as your fleet grows.
+    </p>
+
+    <div class="by-numbers">
+      <div class="metric">
+        <div class="metric-label">Fleet</div>
+        <div class="metric-value">Growing</div>
+        <div class="metric-sub">Modern tractors &amp; late-model reefers.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Coverage</div>
+        <div class="metric-value">West &amp; Southwest</div>
+        <div class="metric-sub">Core lanes out of California.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Focus</div>
+        <div class="metric-value">Reefer</div>
+        <div class="metric-sub">Temperature-sensitive product specialists.</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Approach</div>
+        <div class="metric-value">Hands-On</div>
+        <div class="metric-sub">Dispatch and ownership involved daily.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <h2>Contact Urban Freight</h2>
+    <div class="contact-grid">
+      <div class="contact-box">
+        <h3 style="margin-bottom:4px; color:var(--primary-light);">Shippers &amp; Brokers</h3>
+        <p>
+          For rates, capacity, or lane discussions, reach out by email:
+        </p>
+        <p style="margin-top:6px;">
+          Email:
+          <a href="mailto:urbanfreightinc21@gmail.com">urbanfreightinc21@gmail.com</a>
+        </p>
+        <p style="margin-top:6px; font-size:0.87rem; color:#6b7280;">
+          Please include lane details, temperature requirements, and appointment times if available.
+        </p>
+      </div>
+      <div class="contact-box">
+        <h3 style="margin-bottom:4px; color:var(--primary-light);">Drivers</h3>
+        <p>
+          Looking to run refrigerated freight with a smaller carrier that actually answers the phone?
+        </p>
+        <p style="margin-top:6px;">
+          <a href="apply.html" class="btn btn-primary" style="padding:8px 14px; font-size:0.9rem;">
+            Apply to Drive With Urban
+          </a>
+        </p>
+        <p style="margin-top:6px; font-size:0.87rem; color:#6b7280;">
+          Experienced CDL-A drivers preferred. Application is handled securely through our online form.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 Urban Freight Inc. All rights reserved.</div>
+    <div style="margin-top:4px;">
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="sms-terms.html">SMS Policy &amp; Terms</a>
+    </div>
+  </footer>
+</body>
+</html>

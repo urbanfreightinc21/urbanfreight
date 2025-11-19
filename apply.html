@@ -2,99 +2,344 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Drive With Urban Freight Inc</title>
+  <title>Drive With Urban Freight Inc | Driver Application</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f3f4f6;
-      color: #1f2933;
+    :root {
+      --primary: #0b2447;
+      --primary-light: #19376d;
+      --accent: #00b4d8;
+      --bg: #f3f4f6;
+      --text: #1f2933;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    .wrap {
-      max-width: 720px;
-      margin: 40px auto;
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 24px 20px 26px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
-      border: 1px solid rgba(209, 213, 219, 0.9);
-    }
-    h1 {
-      font-size: 1.7rem;
-      margin-bottom: 6px;
-      color: #0b2447;
-      text-align: center;
-    }
-    p {
-      font-size: 0.96rem;
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
-    .center {
-      text-align: center;
-      margin-top: 18px;
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-    .btn {
+
+    /* Top nav (same look as index) */
+    .nav {
+      background: rgba(11, 36, 71, 0.96);
+      color: #fff;
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .nav-title a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #002033;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Page layout */
+    .page {
+      max-width: 900px;
+      margin: 32px auto 0;
+      padding: 0 16px 40px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .subheading {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px 18px 22px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(203, 213, 225, 0.7);
+    }
+
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: var(--primary-light);
+    }
+
+    form {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .field-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #111827;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.92rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 180, 216, 0.35);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .helper {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .sms-consent {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: #4b5563;
+      background: #f3f4ff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 11px 22px;
+      padding: 10px 18px;
       border-radius: 999px;
-      background: #00b4d8;
-      color: #002033;
       font-weight: 600;
-      font-size: 0.98rem;
+      font-size: 0.95rem;
       border: none;
-      text-decoration: none;
+      cursor: pointer;
+      background: var(--accent);
+      color: #002033;
+      margin-top: 6px;
     }
-    .btn:hover {
-      filter: brightness(1.05);
-    }
-    .note {
-      margin-top: 14px;
-      font-size: 0.85rem;
+
+    footer {
+      margin-top: 20px;
+      padding: 18px 12px 22px;
+      text-align: center;
+      font-size: 0.83rem;
       color: #6b7280;
-      text-align: center;
+      border-top: 1px solid rgba(209, 213, 219, 0.8);
+      background: #f9fafb;
     }
-    .back {
-      margin-top: 18px;
-      text-align: center;
-      font-size: 0.9rem;
+
+    footer a {
+      color: var(--primary-light);
+      margin: 0 6px;
     }
-    .back a {
-      color: #0b2447;
-      text-decoration: none;
-    }
-    .back a:hover {
+
+    footer a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        margin-top: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Drive With Urban Freight Inc</h1>
-    <p>
-      We are looking for professional CDL-A drivers who want consistent refrigerated freight,
-      straightforward communication, and respect for their time. If you’re ready to run with
-      a focused, growing carrier, start by completing our secure online application.
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="logo.png" alt="Urban Freight Inc Logo" class="nav-logo" />
+        </a>
+        <div class="nav-title">
+          <a href="index.html">Urban Freight Inc</a>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#numbers">By the Numbers</a>
+        <a href="apply.html" class="nav-cta">Drive With Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="page">
+    <h1>Driver Application</h1>
+    <p class="subheading">
+      Apply to run long-haul refrigerated freight on our CA–TX and CA–MD lanes. A member of our
+      team will review your application and follow up with next steps.
     </p>
-    <div class="center">
-      <a
-        href="https://intelliapp.driverapponline.com/c/3619813"
-        class="btn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Start Driver Application
-      </a>
+
+    <section class="card">
+      <h2>Basic Information</h2>
+      <form method="post" action="#">
+        <div class="field-group">
+          <div>
+            <label for="fullName">Full Name</label>
+            <input id="fullName" name="fullName" type="text" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div>
+            <label for="phone">Mobile Phone</label>
+            <input id="phone" name="phone" type="tel" required />
+            <div class="helper">Mobile number used for check calls, load updates, and security codes.</div>
+            <div class="sms-consent">
+              By providing your mobile number and submitting this form, you agree to receive SMS
+              messages from Urban Freight Inc related to your application, onboarding, and loads.
+              Message frequency varies. Message &amp; data rates may apply. Text
+              <strong>STOP</strong> to unsubscribe and <strong>HELP</strong> for help. See our
+              <a href="privacy.html">Privacy Policy</a> and
+              <a href="sms-terms.html">SMS Terms &amp; Conditions</a>.
+            </div>
+          </div>
+          <div>
+            <label for="cityState">City &amp; State</label>
+            <input id="cityState" name="cityState" type="text" placeholder="Fresno, CA" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div>
+            <label for="cdl">CDL Class</label>
+            <select id="cdl" name="cdl">
+              <option value="">Select</option>
+              <option value="class-a">Class A</option>
+              <option value="class-b">Class B</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="experience">Years of CDL Experience</label>
+            <input id="experience" name="experience" type="number" min="0" step="0.5" />
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div>
+            <label for="equipment">Do you have your own truck/trailer?</label>
+            <input id="equipment" name="equipment" type="text" placeholder="Company driver / Owner-operator, equipment details" />
+          </div>
+          <div>
+            <label for="lanes">Preferred Lanes</label>
+            <input id="lanes" name="lanes" type="text" placeholder="CA–TX, CA–MD, etc." />
+          </div>
+        </div>
+
+        <div>
+          <label for="notes">Additional Details</label>
+          <textarea id="notes" name="notes" placeholder="Tell us about your experience, home time needs, or questions."></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Submit Application</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2025 Urban Freight Inc. All rights reserved.</div>
+    <div style="margin-top:4px;">
+      <a href="index.html">Home</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="sms-terms.html">SMS Terms &amp; Conditions</a>
     </div>
-    <div class="note">
-      You will be redirected to our IntelliApp application portal to complete your full driver application.
+    <div style="margin-top:6px; font-size:0.85rem;">
+      Email: <a href="mailto:urbanfreightinc21@gmail.com">urbanfreightinc21@gmail.com</a>
     </div>
-    <div class="back">
-      <a href="index.html">← Back to Urban Freight Homepage</a>
-    </div>
-  </div>
+  </footer>
 </body>
 </html>

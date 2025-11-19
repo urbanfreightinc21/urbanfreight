@@ -31,7 +31,7 @@
       text-decoration: none;
     }
 
-    /* Top nav (same look as index) */
+    /* NAV */
     .nav {
       background: rgba(11, 36, 71, 0.96);
       color: #fff;
@@ -41,7 +41,6 @@
       z-index: 10;
       box-shadow: 0 2px 8px rgba(0,0,0,0.25);
     }
-
     .nav-inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -50,45 +49,37 @@
       justify-content: space-between;
       gap: 16px;
     }
-
     .nav-left {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
     .nav-logo {
       height: 40px;
       width: auto;
     }
-
     .nav-title {
       font-weight: 600;
       font-size: 1.1rem;
       letter-spacing: 0.03em;
       text-transform: uppercase;
     }
-
     .nav-title a {
       color: #fff;
       text-decoration: none;
     }
-
     .nav-links {
       display: flex;
       gap: 18px;
       font-size: 0.95rem;
     }
-
     .nav-links a {
       opacity: 0.9;
     }
-
     .nav-links a:hover {
       opacity: 1;
       text-decoration: underline;
     }
-
     .nav-cta {
       padding: 7px 14px;
       border-radius: 999px;
@@ -98,7 +89,7 @@
       font-size: 0.9rem;
     }
 
-    /* Page layout */
+    /* CONTENT */
     .page {
       max-width: 900px;
       margin: 32px auto 0;
@@ -111,7 +102,7 @@
       margin-bottom: 6px;
     }
 
-    .subheading {
+    .sub {
       font-size: 0.95rem;
       color: #4b5563;
       margin-bottom: 16px;
@@ -120,94 +111,38 @@
     .card {
       background: #ffffff;
       border-radius: 12px;
-      padding: 20px 18px 22px;
+      padding: 24px 20px 26px;
       box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
       border: 1px solid rgba(203, 213, 225, 0.7);
     }
 
-    .card h2 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-      color: var(--primary-light);
-    }
-
-    form {
-      margin-top: 8px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-    }
-
-    .field-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    label {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #111827;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font-size: 0.92rem;
-      font-family: inherit;
-      outline: none;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(0, 180, 216, 0.35);
-    }
-
-    textarea {
-      min-height: 80px;
-      resize: vertical;
-    }
-
-    .helper {
-      font-size: 0.8rem;
-      color: #6b7280;
-      margin-top: 2px;
-    }
-
-    .sms-consent {
-      margin-top: 4px;
-      font-size: 0.8rem;
-      color: #4b5563;
-      background: #f3f4ff;
-      border-radius: 8px;
-      padding: 8px 10px;
-      border: 1px solid #e5e7eb;
-    }
-
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
+      display: inline-block;
       background: var(--accent);
       color: #002033;
-      margin-top: 6px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .sms-note {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #4b5563;
+      background: #eef7ff;
+      border: 1px solid #d8e6f7;
+      padding: 10px 12px;
+      border-radius: 8px;
     }
 
     footer {
       margin-top: 20px;
       padding: 18px 12px 22px;
       text-align: center;
-      font-size: 0.83rem;
+      font-size: 0.85rem;
       color: #6b7280;
       border-top: 1px solid rgba(209, 213, 219, 0.8);
       background: #f9fafb;
@@ -216,26 +151,22 @@
     footer a {
       color: var(--primary-light);
       margin: 0 6px;
+      text-decoration: none;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
-
-    @media (max-width: 640px) {
-      .page {
-        margin-top: 24px;
-      }
-    }
   </style>
 </head>
 <body>
+
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
       <div class="nav-left">
         <a href="index.html">
-          <img src="logo.png" alt="Urban Freight Inc Logo" class="nav-logo" />
+          <img src="logo.png" class="nav-logo" alt="Urban Freight Inc Logo">
         </a>
         <div class="nav-title">
           <a href="index.html">Urban Freight Inc</a>
@@ -250,82 +181,39 @@
     </div>
   </nav>
 
-  <!-- CONTENT -->
+  <!-- MAIN -->
   <main class="page">
     <h1>Driver Application</h1>
-    <p class="subheading">
-      Apply to run long-haul refrigerated freight on our CA–TX and CA–MD lanes. A member of our
-      team will review your application and follow up with next steps.
+    <p class="sub">
+      Apply to run CA–TX and CA–MD refrigerated freight with Urban Freight Inc.  
+      All applications are processed securely through IntelliApp.
     </p>
 
     <section class="card">
-      <h2>Basic Information</h2>
-      <form method="post" action="#">
-        <div class="field-group">
-          <div>
-            <label for="fullName">Full Name</label>
-            <input id="fullName" name="fullName" type="text" required />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-        </div>
+      <h2 style="color: var(--primary-light); margin-bottom: 6px;">Start Your Application</h2>
+      <p>
+        Our IntelliApp portal securely collects your CDL information, job history, safety history,  
+        MVR authorization, and required onboarding details.
+      </p>
 
-        <div class="field-group">
-          <div>
-            <label for="phone">Mobile Phone</label>
-            <input id="phone" name="phone" type="tel" required />
-            <div class="helper">Mobile number used for check calls, load updates, and security codes.</div>
-            <div class="sms-consent">
-              By providing your mobile number and submitting this form, you agree to receive SMS
-              messages from Urban Freight Inc related to your application, onboarding, and loads.
-              Message frequency varies. Message &amp; data rates may apply. Text
-              <strong>STOP</strong> to unsubscribe and <strong>HELP</strong> for help. See our
-              <a href="privacy.html">Privacy Policy</a> and
-              <a href="sms-terms.html">SMS Terms &amp; Conditions</a>.
-            </div>
-          </div>
-          <div>
-            <label for="cityState">City &amp; State</label>
-            <input id="cityState" name="cityState" type="text" placeholder="Fresno, CA" />
-          </div>
-        </div>
+      <!-- APPLY BUTTON -->
+      <a
+        class="btn-primary"
+        href="https://intelliapp.driverapponline.com/m/3619813?uri_b=mob_ia_3619813_1637355353"
+        target="_blank"
+      >
+        Start Application
+      </a>
 
-        <div class="field-group">
-          <div>
-            <label for="cdl">CDL Class</label>
-            <select id="cdl" name="cdl">
-              <option value="">Select</option>
-              <option value="class-a">Class A</option>
-              <option value="class-b">Class B</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div>
-            <label for="experience">Years of CDL Experience</label>
-            <input id="experience" name="experience" type="number" min="0" step="0.5" />
-          </div>
-        </div>
-
-        <div class="field-group">
-          <div>
-            <label for="equipment">Do you have your own truck/trailer?</label>
-            <input id="equipment" name="equipment" type="text" placeholder="Company driver / Owner-operator, equipment details" />
-          </div>
-          <div>
-            <label for="lanes">Preferred Lanes</label>
-            <input id="lanes" name="lanes" type="text" placeholder="CA–TX, CA–MD, etc." />
-          </div>
-        </div>
-
-        <div>
-          <label for="notes">Additional Details</label>
-          <textarea id="notes" name="notes" placeholder="Tell us about your experience, home time needs, or questions."></textarea>
-        </div>
-
-        <button type="submit" class="btn-primary">Submit Application</button>
-      </form>
+      <!-- SMS COMPLIANCE NOTE -->
+      <div class="sms-note">
+        By applying and providing your mobile number in IntelliApp, you agree to receive SMS messages
+        from Urban Freight Inc regarding onboarding, safety verification, appointment times, and load
+        communications. Message frequency varies. Message &amp; data rates may apply. Text STOP to
+        unsubscribe and HELP for help. See our
+        <a href="privacy.html">Privacy Policy</a> and
+        <a href="sms-terms.html">SMS Terms &amp; Conditions</a>.
+      </div>
     </section>
   </main>
 
@@ -337,9 +225,10 @@
       <a href="privacy.html">Privacy Policy</a> |
       <a href="sms-terms.html">SMS Terms &amp; Conditions</a>
     </div>
-    <div style="margin-top:6px; font-size:0.85rem;">
+    <div style="margin-top:6px;">
       Email: <a href="mailto:urbanfreightinc21@gmail.com">urbanfreightinc21@gmail.com</a>
     </div>
   </footer>
+
 </body>
 </html>

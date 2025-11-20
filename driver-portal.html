@@ -264,10 +264,10 @@
         <form
           method="post"
           enctype="multipart/form-data"
-          action="https://formspree.io/f/xzzoaggr"
+          action="ACTION_URL_HERE_PICKUP"
         >
           <!-- Dynamic email subject for Formspree -->
-          <input type="hidden" id="pickup_subject" name="_subject" />
+          <input type="hidden" id="pickup_subject" name="subject" />
 
           <div class="field-row">
             <div>
@@ -332,10 +332,10 @@
         <form
           method="post"
           enctype="multipart/form-data"
-          action="https://formspree.io/f/xeonlkkk"
+          action="ACTION_URL_HERE_DELIVERY_PAY"
         >
           <!-- Dynamic email subject for Formspree -->
-          <input type="hidden" id="delivery_subject" name="_subject" />
+          <input type="hidden" id="delivery_subject" name="subject" />
 
           <div class="field-row">
             <div>
@@ -436,6 +436,9 @@
       .forEach(function (el) {
         el.addEventListener("input", updatePickupSubject);
       });
+
+    // Initialize once on page load in case values are autofilled
+    updatePickupSubject();
   </script>
 
   <script>
@@ -451,6 +454,8 @@
       .forEach(function (el) {
         el.addEventListener("input", updateDeliverySubject);
       });
+
+    updateDeliverySubject();
   </script>
 
 </body>

@@ -24,7 +24,6 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* NAV (same as main site) */
     .nav {
       background: rgba(11, 36, 71, 0.96);
       color: #fff;
@@ -67,7 +66,6 @@
       font-size: 0.9rem;
     }
 
-    /* LAYOUT */
     .page {
       max-width: 900px;
       margin: 32px auto 30px;
@@ -220,7 +218,6 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
       <div class="nav-left">
@@ -241,7 +238,6 @@
     </div>
   </nav>
 
-  <!-- CONTENT -->
   <main class="page">
     <h1>Driver Portal</h1>
     <p class="sub">
@@ -264,10 +260,14 @@
         <form
           method="post"
           enctype="multipart/form-data"
-          action="ACTION_URL_HERE_PICKUP"
+          action="https://formspree.io/f/xzzoaggr"
         >
-          <!-- Dynamic email subject for Formspree -->
-          <input type="hidden" id="pickup_subject" name="subject" />
+          <!-- Formspree subject built from fields -->
+          <input
+            type="hidden"
+            name="subject"
+            value="Pickup BOL - Load {{ loadNumber }} - Truck {{ truck }} - {{ driverName }}"
+          />
 
           <div class="field-row">
             <div>
@@ -332,10 +332,14 @@
         <form
           method="post"
           enctype="multipart/form-data"
-          action="ACTION_URL_HERE_DELIVERY_PAY"
+          action="https://formspree.io/f/xeonlkkk"
         >
-          <!-- Dynamic email subject for Formspree -->
-          <input type="hidden" id="delivery_subject" name="subject" />
+          <!-- Formspree subject built from fields -->
+          <input
+            type="hidden"
+            name="subject"
+            value="Delivery BOL / Pay Request - Load {{ loadNumber }} - Truck {{ truck }} - {{ driverName }}"
+          />
 
           <div class="field-row">
             <div>
@@ -421,42 +425,6 @@
       Phone: <a href="tel:+15598259890">(559) 825-9890</a>
     </div>
   </footer>
-
-  <!-- Dynamic email subject scripts -->
-  <script>
-    function updatePickupSubject() {
-      const driver = document.getElementById("u_driverName").value || "";
-      const load = document.getElementById("u_load").value || "";
-      const truck = document.getElementById("u_truck").value || "";
-      document.getElementById("pickup_subject").value =
-        `Pickup BOL - Load ${load} - Truck ${truck} - ${driver}`;
-    }
-
-    document.querySelectorAll("#u_driverName, #u_load, #u_truck")
-      .forEach(function (el) {
-        el.addEventListener("input", updatePickupSubject);
-      });
-
-    // Initialize once on page load in case values are autofilled
-    updatePickupSubject();
-  </script>
-
-  <script>
-    function updateDeliverySubject() {
-      const driver = document.getElementById("p_driverName").value || "";
-      const load = document.getElementById("p_load").value || "";
-      const truck = document.getElementById("p_truck").value || "";
-      document.getElementById("delivery_subject").value =
-        `Delivery BOL / Pay Request - Load ${load} - Truck ${truck} - ${driver}`;
-    }
-
-    document.querySelectorAll("#p_driverName, #p_load, #p_truck")
-      .forEach(function (el) {
-        el.addEventListener("input", updateDeliverySubject);
-      });
-
-    updateDeliverySubject();
-  </script>
 
 </body>
 </html>

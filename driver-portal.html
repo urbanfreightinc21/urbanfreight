@@ -55,7 +55,7 @@
       text-transform: uppercase;
     }
     .nav-title a { color: #fff; text-decoration: none; }
-    .nav-links { display: flex; gap: 18px; font-size: 0.95rem; }
+    .nav-links { display: flex; gap: 18px; font-size: 0.95rem; flex-wrap: wrap; }
     .nav-links a { opacity: 0.9; }
     .nav-links a:hover { opacity: 1; text-decoration: underline; }
     .nav-cta {
@@ -129,7 +129,7 @@
     }
 
     label {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: #111827;
       display: block;
@@ -138,13 +138,17 @@
 
     input, textarea {
       width: 100%;
-      padding: 8px 10px;
+      padding: 10px 12px;
       border-radius: 8px;
       border: 1px solid #d1d5db;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-family: inherit;
       outline: none;
       background: #fff;
+    }
+    input[type="file"] {
+      padding: 7px 6px;
+      font-size: 0.9rem;
     }
     input:focus, textarea:focus {
       border-color: var(--accent);
@@ -290,7 +294,7 @@
           <input type="hidden" name="formName" value="UF Driver Upload">
           <input type="hidden" name="documentType" value="pickup_bol">
 
-          <!-- Dynamic subject for Formspree (both new + legacy keys) -->
+          <!-- Dynamic subject for Formspree -->
           <input type="hidden" id="pickup_subject" name="subject">
           <input type="hidden" id="pickup_subject_legacy" name="_subject">
 
@@ -316,14 +320,26 @@
             <div>
               <label for="u_load">Load #</label>
               <input id="u_load" name="loadNumber" required placeholder="5368" />
-              <div class="helper">Use the load # from the rate con / BOL.</div>
+              <div class="helper">
+                Use the load # from the rate con / BOL.
+              </div>
             </div>
           </div>
 
           <div>
             <label for="u_file">Upload Pickup BOL</label>
-            <input id="u_file" name="pickupBol" type="file" accept="image/*,.pdf" required />
-            <div class="helper">Clear photo or PDF of the pickup BOL.</div>
+            <input
+              id="u_file"
+              name="pickupBol"
+              type="file"
+              accept="application/pdf,image/*"
+              capture="environment"
+              required
+            />
+            <div class="helper">
+              On phone: tap this and use your camera or scanner. If your phone offers “Scan
+              Documents”, use that so it saves as a PDF.
+            </div>
           </div>
 
           <div class="checkbox-row">
@@ -406,25 +422,53 @@
 
           <div>
             <label for="p_bol">Upload Delivery BOL / POD (Required)</label>
-            <input id="p_bol" name="deliveryBol" type="file" accept="image/*,.pdf" required />
+            <input
+              id="p_bol"
+              name="deliveryBol"
+              type="file"
+              accept="application/pdf,image/*"
+              capture="environment"
+              required
+            />
             <div class="helper">
-              Clear photo or PDF of the signed delivery BOL is required for pay.
+              On phone: use the camera or “Scan” feature. A clear PDF or photo of the signed BOL is required for pay.
             </div>
           </div>
 
           <div>
             <label for="p_lumper">Upload Lumper Receipts (if any)</label>
-            <input id="p_lumper" name="lumperReceipts" type="file" accept="image/*,.pdf" multiple />
+            <input
+              id="p_lumper"
+              name="lumperReceipts"
+              type="file"
+              accept="application/pdf,image/*"
+              capture="environment"
+              multiple
+            />
           </div>
 
           <div>
             <label for="p_scale">Upload Scale Tickets (if any)</label>
-            <input id="p_scale" name="scaleTickets" type="file" accept="image/*,.pdf" multiple />
+            <input
+              id="p_scale"
+              name="scaleTickets"
+              type="file"
+              accept="application/pdf,image/*"
+              capture="environment"
+              multiple
+            />
           </div>
 
           <div>
             <label for="p_maint">Upload Maintenance Receipts (if any)</label>
-            <input id="p_maint" name="maintenanceReceipts" type="file" accept="image/*,.pdf" multiple />
+            <input
+              id="p_maint"
+              name="maintenanceReceipts"
+              type="file"
+              accept="application/pdf,image/*"
+              capture="environment"
+              multiple
+            />
           </div>
 
           <div>
@@ -497,7 +541,6 @@
       if (el) el.addEventListener("input", buildDeliverySubject);
     });
 
-    // Initialize once (in case of autofill)
     buildPickupSubject();
     buildDeliverySubject();
 
@@ -525,7 +568,6 @@
 
           if (res.ok) {
             form.reset();
-            // rebuild subjects after reset
             buildPickupSubject();
             buildDeliverySubject();
             if (successEl) successEl.classList.remove("hidden");

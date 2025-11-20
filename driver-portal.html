@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Driver Portal | Urban Freight Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #0b2447;
+      --primary-light: #19376d;
+      --accent: #00b4d8;
+      --bg: #f3f4f6;
+      --text: #1f2933;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV (same as main site) */
+    .nav {
+      background: rgba(11, 36, 71, 0.96);
+      color: #fff;
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo { height: 40px; width: auto; }
+    .nav-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .nav-title a { color: #fff; text-decoration: none; }
+    .nav-links { display: flex; gap: 18px; font-size: 0.95rem; }
+    .nav-links a { opacity: 0.9; }
+    .nav-links a:hover { opacity: 1; text-decoration: underline; }
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #002033;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* LAYOUT */
+    .page {
+      max-width: 900px;
+      margin: 32px auto 30px;
+      padding: 0 16px 40px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .sub {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px 18px 22px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(203, 213, 225, 0.7);
+    }
+    .card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: var(--primary-light);
+    }
+    .card small {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    form {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #111827;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 0.92rem;
+      font-family: inherit;
+      outline: none;
+      background: #fff;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(0, 180, 216, 0.35);
+    }
+    textarea { min-height: 70px; resize: vertical; }
+
+    .helper {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    .warning {
+      font-size: 0.8rem;
+      color: #b45309;
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      padding: 6px 8px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      background: var(--accent);
+      color: #002033;
+      margin-top: 4px;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: #4b5563;
+      margin-top: 4px;
+    }
+
+    footer {
+      padding: 18px 12px 22px;
+      text-align: center;
+      font-size: 0.83rem;
+      color: #6b7280;
+      border-top: 1px solid rgba(209, 213, 219, 0.8);
+      background: #f9fafb;
+    }
+    footer a { color: var(--primary-light); margin: 0 6px; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="logo.png" alt="Urban Freight Inc Logo" class="nav-logo" />
+        </a>
+        <div class="nav-title">
+          <a href="index.html">Urban Freight Inc</a>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#numbers">By the Numbers</a>
+        <a href="apply.html" class="nav-cta">Drive With Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main class="page">
+    <h1>Driver Portal</h1>
+    <p class="sub">
+      Use this page to upload your BOLs, receipts, and scale tickets, and to request driver pay.
+      Fill everything out clearly so settlements are not delayed.
+    </p>
+
+    <div class="grid">
+      <!-- UPLOAD DOCUMENTS -->
+      <section class="card">
+        <h2>Upload Documents</h2>
+        <small>Pickup BOL, Delivery BOL (POD), Lumper, Scale, Maintenance</small>
+
+        <div class="warning">
+          Before leaving the shipper, confirm case/weight count and verify the BOL matches what is loaded.
+          Upload a clear photo or PDF.
+        </div>
+
+        <form
+          method="post"
+          enctype="multipart/form-data"
+          action="ACTION_URL_HERE_UPLOAD"
+        >
+          <div class="field-row">
+            <div>
+              <label for="u_driverName">Driver Name</label>
+              <input id="u_driverName" name="driverName" required />
+            </div>
+            <div>
+              <label for="u_truck">Truck #</label>
+              <input id="u_truck" name="truck" required />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div>
+              <label for="u_trailer">Trailer #</label>
+              <input id="u_trailer" name="trailer" required />
+            </div>
+            <div>
+              <label for="u_load">Load #</label>
+              <input id="u_load" name="loadNumber" required />
+            </div>
+          </div>
+
+          <div>
+            <label for="u_type">Document Type</label>
+            <select id="u_type" name="documentType" required>
+              <option value="">Select one</option>
+              <option value="pickup_bol">Pickup BOL (case count check)</option>
+              <option value="delivery_bol">Delivery BOL / POD</option>
+              <option value="lumper_receipt">Lumper receipt</option>
+              <option value="scale_ticket">Scale ticket</option>
+              <option value="maintenance_receipt">Maintenance receipt</option>
+            </select>
+            <div class="helper">
+              Choose the correct type so it routes to the right place.
+            </div>
+          </div>
+
+          <div>
+            <label for="u_file">Upload File</label>
+            <input id="u_file" name="file" type="file" accept="image/*,.pdf" required />
+            <div class="helper">Upload a clear photo or PDF (no blurry images).</div>
+          </div>
+
+          <div>
+            <label for="u_notes">Notes (optional)</label>
+            <textarea id="u_notes" name="notes" placeholder="Anything dispatch/accounting should know about this load or document."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Submit Document</button>
+
+          <div class="note">
+            Submitting this form sends your document to Urban Freight Inc for review and recordkeeping.
+          </div>
+        </form>
+      </section>
+
+      <!-- REQUEST DRIVER PAY -->
+      <section class="card">
+        <h2>Request Driver Pay</h2>
+        <small>Use after delivery is complete and BOL is signed.</small>
+
+        <form
+          method="post"
+          enctype="multipart/form-data"
+          action="ACTION_URL_HERE_PAY"
+        >
+          <div class="field-row">
+            <div>
+              <label for="p_driverName">Driver Name</label>
+              <input id="p_driverName" name="driverName" required />
+            </div>
+            <div>
+              <label for="p_truck">Truck #</label>
+              <input id="p_truck" name="truck" required />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div>
+              <label for="p_trailer">Trailer #</label>
+              <input id="p_trailer" name="trailer" required />
+            </div>
+            <div>
+              <label for="p_load">Load #</label>
+              <input id="p_load" name="loadNumber" required />
+            </div>
+          </div>
+
+          <div>
+            <label for="p_date">Delivery Date</label>
+            <input id="p_date" name="deliveryDate" type="date" required />
+          </div>
+
+          <div>
+            <label for="p_bol">Upload Delivery BOL / POD</label>
+            <input id="p_bol" name="deliveryBol" type="file" accept="image/*,.pdf" required />
+            <div class="helper">
+              Clear photo or PDF of the signed delivery BOL is required for pay.
+            </div>
+          </div>
+
+          <div>
+            <label for="p_lumper">Upload Lumper Receipts (optional)</label>
+            <input id="p_lumper" name="lumperReceipts" type="file" accept="image/*,.pdf" multiple />
+          </div>
+
+          <div>
+            <label for="p_notes">Notes (optional)</label>
+            <textarea id="p_notes" name="notes" placeholder="Example: detention, layover, accessorials, or anything else we should know."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Submit Pay Request</button>
+
+          <div class="note">
+            Use this only after the load is delivered and documents are ready. Incomplete or missing
+            BOLs may delay payment.
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div>© 2025 Urban Freight Inc. All rights reserved.</div>
+    <div style="margin-top:4px;">
+      <a href="index.html">Home</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="sms-terms.html">SMS Terms &amp; Conditions</a>
+    </div>
+    <div style="margin-top:6px; font-size:0.85rem;">
+      Email: <a href="mailto:urbanfreightinc21@gmail.com">urbanfreightinc21@gmail.com</a> |
+      Phone: <a href="tel:+15598259890">(559) 825-9890</a>
+    </div>
+  </footer>
+
+</body>
+</html>

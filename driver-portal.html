@@ -266,6 +266,9 @@
           enctype="multipart/form-data"
           action="https://formspree.io/f/xzzoaggr"
         >
+          <!-- Dynamic email subject for Formspree -->
+          <input type="hidden" id="pickup_subject" name="_subject" />
+
           <div class="field-row">
             <div>
               <label for="u_driverName">Driver Name</label>
@@ -331,6 +334,9 @@
           enctype="multipart/form-data"
           action="https://formspree.io/f/xeonlkkk"
         >
+          <!-- Dynamic email subject for Formspree -->
+          <input type="hidden" id="delivery_subject" name="_subject" />
+
           <div class="field-row">
             <div>
               <label for="p_driverName">Driver Name</label>
@@ -415,6 +421,37 @@
       Phone: <a href="tel:+15598259890">(559) 825-9890</a>
     </div>
   </footer>
+
+  <!-- Dynamic email subject scripts -->
+  <script>
+    function updatePickupSubject() {
+      const driver = document.getElementById("u_driverName").value || "";
+      const load = document.getElementById("u_load").value || "";
+      const truck = document.getElementById("u_truck").value || "";
+      document.getElementById("pickup_subject").value =
+        `Pickup BOL - Load ${load} - Truck ${truck} - ${driver}`;
+    }
+
+    document.querySelectorAll("#u_driverName, #u_load, #u_truck")
+      .forEach(function (el) {
+        el.addEventListener("input", updatePickupSubject);
+      });
+  </script>
+
+  <script>
+    function updateDeliverySubject() {
+      const driver = document.getElementById("p_driverName").value || "";
+      const load = document.getElementById("p_load").value || "";
+      const truck = document.getElementById("p_truck").value || "";
+      document.getElementById("delivery_subject").value =
+        `Delivery BOL / Pay Request - Load ${load} - Truck ${truck} - ${driver}`;
+    }
+
+    document.querySelectorAll("#p_driverName, #p_load, #p_truck")
+      .forEach(function (el) {
+        el.addEventListener("input", updateDeliverySubject);
+      });
+  </script>
 
 </body>
 </html>

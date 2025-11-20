@@ -185,6 +185,15 @@
       max-width: 260px;
     }
 
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: #4b5563;
+      margin-top: 4px;
+    }
+
     .note {
       font-size: 0.8rem;
       color: #4b5563;
@@ -226,6 +235,7 @@
         <a href="index.html#about">About</a>
         <a href="index.html#services">Services</a>
         <a href="index.html#numbers">By the Numbers</a>
+        <a href="driver-portal.html">Driver Portal</a>
         <a href="apply.html" class="nav-cta">Drive With Us</a>
       </div>
     </div>
@@ -235,21 +245,20 @@
   <main class="page">
     <h1>Driver Portal</h1>
     <p class="sub">
-      Simple steps for drivers:
-      <br />Step 1 – Upload BOLs and receipts for the load.
-      <br />Step 2 – After delivery, request driver pay.
+      Step 1 – At pickup, upload the pickup BOL and confirm product count.<br/>
+      Step 2 – After delivery, upload the signed delivery BOL and any receipts, then request pay.
     </p>
 
     <div class="grid">
-      <!-- STEP 1: UPLOAD DOCUMENTS -->
+      <!-- STEP 1: PICKUP ONLY -->
       <section class="card">
-        <div class="step-label">Step 1</div>
-        <h2>Upload BOLs & Receipts</h2>
-        <small>Pickup BOL, Delivery BOL (POD), Lumper, Scale, Maintenance</small>
+        <div class="step-label">Step 1 – Pickup</div>
+        <h2>Pickup BOL / Case Count</h2>
+        <small>Use this at the shipper only, before leaving.</small>
 
         <div class="warning">
           Before leaving the shipper, confirm case/weight count and verify the BOL matches what is
-          loaded. Upload a clear photo or PDF.
+          loaded. Upload a clear photo or PDF of the pickup BOL.
         </div>
 
         <form
@@ -284,21 +293,14 @@
           </div>
 
           <div>
-            <label for="u_type">What are you uploading?</label>
-            <select id="u_type" name="documentType" required>
-              <option value="">Select one</option>
-              <option value="pickup_bol">Pickup BOL (case count check)</option>
-              <option value="delivery_bol">Delivery BOL / POD</option>
-              <option value="lumper_receipt">Lumper receipt</option>
-              <option value="scale_ticket">Scale ticket</option>
-              <option value="maintenance_receipt">Maintenance receipt</option>
-            </select>
+            <label for="u_file">Upload Pickup BOL</label>
+            <input id="u_file" name="pickupBol" type="file" accept="image/*,.pdf" required />
+            <div class="helper">Clear photo or PDF of the pickup BOL.</div>
           </div>
 
-          <div>
-            <label for="u_file">Upload File</label>
-            <input id="u_file" name="file" type="file" accept="image/*,.pdf" required />
-            <div class="helper">Clear photo or PDF. You can submit more than once if needed.</div>
+          <div class="checkbox-row">
+            <input id="u_confirm" name="caseCountConfirmed" type="checkbox" required />
+            <label for="u_confirm">I confirmed the case/weight count and the BOL matches the product loaded.</label>
           </div>
 
           <div>
@@ -306,23 +308,23 @@
             <textarea
               id="u_notes"
               name="notes"
-              placeholder="Example: Lumper paid $200 at receiver, 2 extra pallets added, etc."
+              placeholder="Example: Shipper added 2 extra pallets, shorted 5 cases, etc."
             ></textarea>
           </div>
 
-          <button type="submit" class="btn-primary">Submit Document</button>
+          <button type="submit" class="btn-primary">Submit Pickup BOL</button>
 
           <div class="note">
-            This sends your document to Urban Freight for this load so nothing gets lost.
+            This sends the pickup BOL and case count confirmation to Urban Freight for this load.
           </div>
         </form>
       </section>
 
-      <!-- STEP 2: REQUEST DRIVER PAY -->
+      <!-- STEP 2: DELIVERY + PAY REQUEST -->
       <section class="card">
-        <div class="step-label">Step 2</div>
-        <h2>Request Driver Pay</h2>
-        <small>Use this after delivery is complete and BOL is signed.</small>
+        <div class="step-label">Step 2 – Delivery & Pay</div>
+        <h2>Delivery BOL & Driver Pay Request</h2>
+        <small>Use this after delivery is complete and the BOL is signed.</small>
 
         <form
           method="post"
@@ -359,7 +361,7 @@
           </div>
 
           <div>
-            <label for="p_bol">Upload Delivery BOL / POD</label>
+            <label for="p_bol">Upload Delivery BOL / POD (Required)</label>
             <input id="p_bol" name="deliveryBol" type="file" accept="image/*,.pdf" required />
             <div class="helper">
               Clear photo or PDF of the signed delivery BOL is required for pay.
@@ -367,8 +369,18 @@
           </div>
 
           <div>
-            <label for="p_lumper">Upload Lumper Receipts (optional)</label>
+            <label for="p_lumper">Upload Lumper Receipts (if any)</label>
             <input id="p_lumper" name="lumperReceipts" type="file" accept="image/*,.pdf" multiple />
+          </div>
+
+          <div>
+            <label for="p_scale">Upload Scale Tickets (if any)</label>
+            <input id="p_scale" name="scaleTickets" type="file" accept="image/*,.pdf" multiple />
+          </div>
+
+          <div>
+            <label for="p_maint">Upload Maintenance Receipts (if any)</label>
+            <input id="p_maint" name="maintenanceReceipts" type="file" accept="image/*,.pdf" multiple />
           </div>
 
           <div>
@@ -376,11 +388,11 @@
             <textarea
               id="p_notes"
               name="notes"
-              placeholder="Example: Detention 3 hours at receiver, layover approved by dispatch, etc."
+              placeholder="Example: Detention 3 hours, layover approved, any issues at receiver, etc."
             ></textarea>
           </div>
 
-          <button type="submit" class="btn-primary">Submit Pay Request</button>
+          <button type="submit" class="btn-primary">Submit Delivery & Pay Request</button>
 
           <div class="note">
             Use this only after the load is delivered and documents are ready. Missing BOLs will delay

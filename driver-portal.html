@@ -530,7 +530,7 @@
             Use this form to upload BOLs, PODs, lumper receipts, detention receipts, and any supporting documents.
             <br />
             <span class="small-text">
-              Fields <strong>Driver Name</strong> and <strong>Type</strong> are preserved in Formspree emails.
+              Driver name, type, truck #, and load # are included in the subject and first line of the email.
             </span>
           </p>
         </header>
@@ -547,7 +547,7 @@
               <label for="bol-driver-name">Driver Name</label>
               <input
                 id="bol-driver-name"
-                name="Driver Name"
+                name="driver_name"
                 type="text"
                 required
                 placeholder="First and last name"
@@ -557,7 +557,7 @@
 
             <div class="form-row">
               <label for="bol-type">Type</label>
-              <select id="bol-type" name="Type" required>
+              <select id="bol-type" name="doc_type" required>
                 <option value="">Select type…</option>
                 <option value="BOL / POD">BOL / POD</option>
                 <option value="Lumper">Lumper Receipt</option>
@@ -570,7 +570,7 @@
               <label for="bol-truck">Truck #</label>
               <input
                 id="bol-truck"
-                name="Truck #"
+                name="truck_number"
                 type="text"
                 required
                 placeholder="e.g. 509"
@@ -581,7 +581,7 @@
               <label for="bol-trailer">Trailer #</label>
               <input
                 id="bol-trailer"
-                name="Trailer #"
+                name="trailer_number"
                 type="text"
                 placeholder="If applicable"
               />
@@ -591,7 +591,7 @@
               <label for="bol-load">Load #</label>
               <input
                 id="bol-load"
-                name="Load #"
+                name="load_number"
                 type="text"
                 required
                 placeholder="Broker or Urban Freight load #"
@@ -602,14 +602,16 @@
               <label for="bol-files">Upload files</label>
               <input
                 id="bol-files"
-                name="Attachments"
+                name="attachments"
                 type="file"
                 multiple
-                accept=".jpg,.jpeg,.png,.pdf"
+                accept="image/*,.pdf"
+                capture="environment"
                 required
               />
               <div class="hint">
-                You can select multiple photos or PDFs at once.
+                You can attach multiple photos or PDFs in one submission.
+                On most phones, take a photo, tap “Use photo”, then tap this field again to take another.
               </div>
             </div>
           </div>
@@ -618,17 +620,18 @@
             <label for="bol-notes">Notes (optional)</label>
             <textarea
               id="bol-notes"
-              name="Notes"
+              name="notes"
               placeholder="Extra info for dispatch or accounting (delivery issues, shortages, etc.)"
             ></textarea>
           </div>
 
-          <!-- Optional subject line to help you filter in inbox -->
+          <!-- Dynamic email subject and message for Formspree -->
           <input
             type="hidden"
-            name="_subject"
-            value="Urban Freight · BOL / Document Upload"
+            name="subject"
+            value="UF BOL/{{ doc_type }} · {{ driver_name }} · Truck {{ truck_number }} · Load {{ load_number }}"
           />
+          <textarea name="message" hidden></textarea>
 
           <div class="form-footer">
             <button type="submit" class="btn">
@@ -655,7 +658,7 @@
             Use this form to request trip pay, a settlement review, or an advance.
             <br />
             <span class="small-text">
-              Again, <strong>Driver Name</strong> and <strong>Type</strong> are kept as-is in the email.
+              Driver name, type, truck #, and load # are also included in the subject and first line of the email.
             </span>
           </p>
         </header>
@@ -672,7 +675,7 @@
               <label for="pay-driver-name">Driver Name</label>
               <input
                 id="pay-driver-name"
-                name="Driver Name"
+                name="driver_name"
                 type="text"
                 required
                 placeholder="First and last name"
@@ -681,7 +684,7 @@
 
             <div class="form-row">
               <label for="pay-type">Type</label>
-              <select id="pay-type" name="Type" required>
+              <select id="pay-type" name="pay_type" required>
                 <option value="">Select type…</option>
                 <option value="Trip Pay">Trip Pay</option>
                 <option value="Advance Request">Advance Request</option>
@@ -694,7 +697,7 @@
               <label for="pay-truck">Truck #</label>
               <input
                 id="pay-truck"
-                name="Truck #"
+                name="truck_number"
                 type="text"
                 required
                 placeholder="e.g. 509"
@@ -705,7 +708,7 @@
               <label for="pay-load">Load # (if applicable)</label>
               <input
                 id="pay-load"
-                name="Load #"
+                name="load_number"
                 type="text"
                 placeholder="If this is tied to a specific load"
               />
@@ -715,7 +718,7 @@
               <label for="pay-amount">Amount requested</label>
               <input
                 id="pay-amount"
-                name="Amount Requested"
+                name="amount_requested"
                 type="text"
                 placeholder="e.g. $250 advance, or 'Trip pay for CA–TX–CA'"
               />
@@ -725,10 +728,11 @@
               <label for="pay-files">Upload supporting documents (optional)</label>
               <input
                 id="pay-files"
-                name="Attachments"
+                name="attachments"
                 type="file"
                 multiple
-                accept=".jpg,.jpeg,.png,.pdf"
+                accept="image/*,.pdf"
+                capture="environment"
               />
               <div class="hint">
                 You can attach rate cons, BOLs, or other proof if needed.
@@ -740,17 +744,19 @@
             <label for="pay-notes">Notes</label>
             <textarea
               id="pay-notes"
-              name="Notes"
+              name="notes"
               required
               placeholder="Explain what you’re requesting so accounting can process it quickly."
             ></textarea>
           </div>
 
+          <!-- Dynamic email subject and message for Formspree -->
           <input
             type="hidden"
-            name="_subject"
-            value="Urban Freight · Driver Pay Request"
+            name="subject"
+            value="UF Pay/{{ pay_type }} · {{ driver_name }} · Truck {{ truck_number }} · Load {{ load_number }}"
           />
+          <textarea name="message" hidden></textarea>
 
           <div class="form-footer">
             <button type="submit" class="btn">
@@ -766,6 +772,37 @@
   </main>
 
   <script>
+    // Build a summary line for Formspree "message" so email preview shows key info
+    function buildSummary(form) {
+      const isBol = form.id === "bol-form";
+
+      const driver = (form.querySelector('[name="driver_name"]')?.value || "").trim();
+      const truck = (form.querySelector('[name="truck_number"]')?.value || "").trim();
+      const load = (form.querySelector('[name="load_number"]')?.value || "").trim();
+      const notes = (form.querySelector('[name="notes"]')?.value || "").trim();
+
+      let type = "";
+      if (isBol) {
+        type = form.querySelector('[name="doc_type"]')?.value || "";
+      } else {
+        type = form.querySelector('[name="pay_type"]')?.value || "";
+      }
+
+      const parts = [];
+      if (driver) parts.push(`Driver: ${driver}`);
+      if (type) parts.push(`Type: ${type}`);
+      if (truck) parts.push(`Truck: ${truck}`);
+      if (load) parts.push(`Load: ${load}`);
+
+      let summary = parts.join(" · ");
+      if (notes) summary += `\nNotes: ${notes}`;
+
+      const msgField = form.querySelector('textarea[name="message"]');
+      if (msgField) {
+        msgField.value = summary || "Driver submission from portal";
+      }
+    }
+
     // Generic handler for all Formspree forms on the page
     document.addEventListener("DOMContentLoaded", function () {
       const forms = document.querySelectorAll(".fs-form");
@@ -785,6 +822,9 @@
 
           const submitButton = form.querySelector("button[type='submit']");
           if (submitButton) submitButton.disabled = true;
+
+          // Fill in the hidden "message" field before sending to Formspree
+          buildSummary(form);
 
           const data = new FormData(form);
 

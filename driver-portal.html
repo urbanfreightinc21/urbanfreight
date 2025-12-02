@@ -626,45 +626,81 @@
   </main>
 
   <script>
-    // Toggle forms on mobile: show only the selected one.
-    (function () {
-      var buttons = document.querySelectorAll("#modeSwitch .mode-btn");
-      var pickupCard = document.getElementById("pickup-card");
-      var deliveryCard = document.getElementById("delivery-card");
+  // Toggle forms on mobile: show only the selected one.
+  (function () {
+    var buttons = document.querySelectorAll("#modeSwitch .mode-btn");
+    var pickupCard = document.getElementById("pickup-card");
+    var deliveryCard = document.getElementById("delivery-card");
 
-      function setMode(targetId) {
-        buttons.forEach(function (btn) {
-          btn.classList.toggle("active", btn.dataset.target === targetId);
-        });
-
-        // On small screens hide the other card. On desktop CSS shows both.
-        if (window.innerWidth < 880) {
-          pickupCard.classList.toggle("hidden", targetId !== "pickup-card");
-          deliveryCard.classList.toggle("hidden", targetId !== "delivery-card");
-        }
-      }
-
+    function setMode(targetId) {
       buttons.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          setMode(btn.dataset.target);
-          // Scroll to forms after switching on small screens
-          if (window.innerWidth < 880) {
-            document.querySelector(".step-label:nth-of-type(2)").scrollIntoView({ behavior: "smooth" });
-          }
-        });
+        btn.classList.toggle("active", btn.dataset.target === targetId);
       });
 
-      // On resize, if we go back to desktop, ensure both are visible
-      window.addEventListener("resize", function () {
-        if (window.innerWidth >= 880) {
-          pickupCard.classList.remove("hidden");
-          deliveryCard.classList.remove("hidden");
-        } else {
-          var activeBtn = document.querySelector("#modeSwitch .mode-btn.active");
-          if (activeBtn) setMode(activeBtn.dataset.target);
+      if (window.innerWidth < 880) {
+        pickupCard.classList.toggle("hidden", targetId !== "pickup-card");
+        deliveryCard.classList.toggle("hidden", targetId !== "delivery-card");
+      }
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setMode(btn.dataset.target);
+        if (window.innerWidth < 880) {
+          document
+            .querySelector(".step-label:nth-of-type(2)")
+            .scrollIntoView({ behavior: "smooth" });
         }
       });
-    })();
-  </script>
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 880) {
+        pickupCard.classList.remove("hidden");
+        deliveryCard.classList.remove("hidden");
+      } else {
+        var activeBtn = document.querySelector("#modeSwitch .mode-btn.active");
+        if (activeBtn) setMode(activeBtn.dataset.target);
+      }
+    });
+  })();
+
+  // Allow true multi-capture with the camera: keep previous photos instead of replacing.
+  (function () {
+    function enableMultiCapture(inputId) {
+      var input = document.getElementById(inputId);
+      if (!input) return;
+
+      var storedFiles = [];
+
+      input.addEventListener("change", function () {
+        var newFiles = Array.from(input.files || []);
+
+        // Merge old + new selections
+        storedFiles = storedFiles.concat(newFiles);
+
+        // Optional: de-duplicate by name+size
+        var seen = {};
+        storedFiles = storedFiles.filter(function (file) {
+          var key = file.name + ":" + file.size;
+          if (seen[key]) return false;
+          seen[key] = true;
+          return true;
+        });
+
+        // Build a new FileList with all files
+        var dt = new DataTransfer();
+        storedFiles.forEach(function (file) {
+          dt.items.add(file);
+        });
+        input.files = dt.files;
+      });
+    }
+
+    enableMultiCapture("pickup-files");
+    enableMultiCapture("del-files");
+  })();
+</script>
+
 </body>
 </html>

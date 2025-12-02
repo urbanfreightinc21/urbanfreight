@@ -470,16 +470,16 @@
           enctype="multipart/form-data"
         >
           <input type="hidden" name="Form Type" value="Pickup BOL / Loading Photos" />
-          <input type="hidden" name="_subject" value="Pickup BOL / Loading submission" />
+<input type="hidden" name="subject" value="Pickup BOL - {{ driver }} - Truck {{ truck }}" />
 
           <div>
             <label for="pickup-driver">Driver Name</label>
-            <input id="pickup-driver" name="Driver Name" placeholder="First and last name" required />
+           <input id="pickup-driver" name="driver" placeholder="First and last name" required />
           </div>
 
           <div>
             <label for="pickup-truck">Truck #</label>
-            <input id="pickup-truck" name="Truck #" placeholder="e.g. 509" required />
+            <input id="pickup-truck"  name="truck"  placeholder="e.g. 509"             required />
           </div>
 
           <div>
@@ -555,16 +555,17 @@
           enctype="multipart/form-data"
         >
           <input type="hidden" name="Form Type" value="Delivery POD / Driver Pay" />
-          <input type="hidden" name="_subject" value="Delivery POD / Driver pay request" />
+<input type="hidden" name="subject" value="Delivery POD / Pay - {{ driver }} - Truck {{ truck }}" />
+
 
           <div>
             <label for="del-driver">Driver Name</label>
-            <input id="del-driver" name="Driver Name" placeholder="First and last name" required />
+            <input id="del-driver" name="driver" placeholder="First and last name" required />
           </div>
 
           <div>
             <label for="del-truck">Truck #</label>
-            <input id="del-truck" name="Truck #" placeholder="e.g. 509" required />
+            <input id="del-truck"  name="truck"  placeholder="e.g. 509"             required />
           </div>
 
           <div>

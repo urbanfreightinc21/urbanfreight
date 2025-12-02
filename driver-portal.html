@@ -10,19 +10,14 @@
       --primary-light: #19376d;
       --accent: #00b4d8;
       --bg: #f3f4f6;
-      --card-bg: #ffffff;
       --text: #1f2933;
+      --card-bg: #ffffff;
       --muted: #6b7280;
-      --border: #d1d5db;
-      --danger: #b91c1c;
-      --success: #059669;
+      --border: #e5e7eb;
+      --success: #16a34a;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -31,737 +26,645 @@
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* HEADER */
     .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
       background: rgba(11, 36, 71, 0.97);
       color: #fff;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(8px);
+      padding: 14px 18px 18px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
     }
 
     .nav-inner {
-      max-width: 1100px;
+      max-width: 960px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 14px;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .nav-logo {
+    .brand {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .nav-logo img {
-      height: 36px;
-      width: auto;
-      object-fit: contain;
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 0, #00b4d8, #0b2447);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .nav-title {
-      font-size: 18px;
-      font-weight: 600;
+    .brand-logo img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-text strong {
+      font-size: 1.02rem;
       letter-spacing: 0.02em;
     }
 
-    .nav-subtitle {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.7);
-      white-space: nowrap;
+    .brand-text span {
+      font-size: 0.76rem;
+      opacity: 0.9;
     }
 
-    .nav-right {
+    .nav-actions {
       display: flex;
+      gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 6px;
-      min-width: 0;
     }
 
-    .nav-pill {
-      font-size: 13px;
-      padding: 6px 10px;
+    .pill {
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(15, 23, 42, 0.4);
-      display: inline-flex;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top left,
+        rgba(148, 163, 184, 0.18),
+        rgba(15, 23, 42, 0.4));
+      padding: 6px 11px;
+      font-size: 0.75rem;
+      display: flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
     }
 
-    .nav-pill span {
-      font-size: 11px;
+    .pill-label {
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(255, 255, 255, 0.65);
+      letter-spacing: 0.12em;
+      font-size: 0.64rem;
+      opacity: 0.8;
     }
 
-    /* PAGE LAYOUT */
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 18px 16px 32px;
+    .pill-value {
+      font-weight: 500;
     }
 
-    .hero {
-      margin-bottom: 24px;
-      background: linear-gradient(135deg, #0b2447, #19376d);
+    /* MAIN WRAPPER */
+    main {
+      max-width: 960px;
+      margin: 18px auto 40px;
+      padding: 0 14px 24px;
+    }
+
+    /* INTRO CARD */
+    .intro-card {
+      background: radial-gradient(circle at top left, #1d3b72, #0b2447);
       color: #fff;
+      padding: 20px 18px 22px;
       border-radius: 18px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.35);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+      margin-bottom: 18px;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(0, 180, 216, 0.32), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.7), transparent 55%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-kicker {
-      font-size: 11px;
-      letter-spacing: 0.18em;
+    .intro-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 4px;
+      opacity: 0.72;
+      margin-bottom: 8px;
     }
 
-    .hero-title {
-      font-size: 22px;
-      font-weight: 700;
+    .intro-title {
+      font-size: 1.32rem;
+      font-weight: 650;
       margin-bottom: 6px;
     }
 
-    .hero-subtitle {
-      font-size: 13px;
-      color: rgba(226, 232, 240, 0.85);
+    .intro-copy {
+      font-size: 0.84rem;
+      opacity: 0.92;
       margin-bottom: 10px;
     }
 
-    .hero-steps {
-      font-size: 12px;
-      color: rgba(226, 232, 240, 0.9);
+    .intro-small {
+      font-size: 0.76rem;
+      opacity: 0.88;
     }
 
-    .hero-steps strong {
+    .intro-small strong {
       font-weight: 600;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      align-items: flex-start;
+    /* STEP SWITCHER */
+    .step-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin: 16px 0 8px;
     }
 
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .mode-switch {
+      display: flex;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 4px;
+      background: #e5e7eb;
+      margin-bottom: 16px;
     }
 
-    .card {
+    .mode-btn {
+      flex: 1;
+      border-radius: 999px;
+      border: none;
+      padding: 9px 10px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      color: #4b5563;
+    }
+
+    .mode-btn span.sub {
+      font-size: 0.66rem;
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .mode-btn.active {
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(148, 163, 184, 0.65);
+      color: var(--primary);
+    }
+
+    .mode-btn.active span.sub {
+      color: var(--muted);
+    }
+
+    /* FORMS LAYOUT */
+    .forms-wrapper {
+      display: block;
+    }
+
+    .form-card {
       background: var(--card-bg);
       border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 16px 16px 14px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.16);
+      padding: 16px 14px 18px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      margin-bottom: 14px;
     }
 
-    .card-header {
-      margin-bottom: 12px;
+    .form-card.hidden {
+      display: none;
     }
 
-    .card-tag {
-      font-size: 11px;
-      display: inline-flex;
+    .form-header-row {
+      display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: space-between;
+      gap: 8px;
       margin-bottom: 4px;
     }
 
-    .dot-pickup {
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ecfdf3;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .chip-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.22);
     }
 
-    .dot-delivery {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #eab308;
-      box-shadow: 0 0 0 6px rgba(234, 179, 8, 0.22);
+    .chip.delivery {
+      background: #fff7ed;
+      color: #92400e;
+      border-color: #fed7aa;
     }
 
-    .card-title {
-      font-size: 16px;
+    .chip-dot.delivery {
+      background: #f97316;
+    }
+
+    .form-title {
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 4px;
     }
 
-    .card-subtitle {
-      font-size: 12px;
+    .form-subtitle {
+      font-size: 0.75rem;
       color: var(--muted);
+      margin-bottom: 10px;
     }
 
-    /* FORM LAYOUT */
-    .form-grid {
+    form {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    @media (max-width: 640px) {
-      .form-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .form-row {
-      margin-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      gap: 10px;
     }
 
     label {
-      font-size: 12px;
+      font-size: 0.76rem;
       font-weight: 500;
-      color: #374151;
+      display: block;
+      margin-bottom: 4px;
     }
 
     .hint {
-      font-size: 11px;
+      font-size: 0.7rem;
       color: var(--muted);
+      margin-bottom: 3px;
     }
 
-    input[type="text"],
-    input[type="number"],
-    input[type="email"],
+    input,
     select,
-    textarea,
-    input[type="file"] {
+    textarea {
+      width: 100%;
       border-radius: 10px;
       border: 1px solid var(--border);
-      padding: 7px 8px;
-      font-size: 13px;
-      width: 100%;
+      padding: 9px 10px;
+      font-size: 0.84rem;
+      outline: none;
       background: #f9fafb;
-      transition: border-color 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
-    }
-
-    input[type="file"] {
-      padding: 5px 8px;
-      font-size: 12px;
-      background: #f9fafb;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
-      outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.3);
       background: #ffffff;
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35);
     }
 
     textarea {
+      min-height: 70px;
       resize: vertical;
-      min-height: 60px;
-      max-height: 200px;
     }
 
-    .form-footer {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+    input[type="file"] {
+      padding: 6px 6px;
+      background: #f9fafb;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+    .submit-row {
+      margin-top: 4px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
       border-radius: 999px;
-      border: 1px solid transparent;
-      padding: 7px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--accent), #48cae4);
+      border: none;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #00b4d8, #38bdf8);
       color: #0b1120;
-      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.45);
-      white-space: nowrap;
+      cursor: pointer;
+      box-shadow: 0 12px 25px rgba(59, 130, 246, 0.35);
     }
 
-    .btn:disabled {
-      opacity: 0.65;
-      cursor: default;
-      box-shadow: none;
+    button[type="submit"]:active {
+      transform: translateY(1px);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
     }
 
-    .status {
-      font-size: 12px;
-      min-height: 18px;
-    }
-
-    .status.success {
-      color: var(--success);
-    }
-
-    .status.error {
-      color: var(--danger);
-    }
-
-    .status.muted {
+    .note {
+      font-size: 0.7rem;
       color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* DESKTOP: show both cards side by side */
+    @media (min-width: 880px) {
+      .nav-inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .intro-card {
+        margin-top: 18px;
+      }
+
+      .forms-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .form-card {
+        margin-bottom: 0;
+      }
+
+      /* on desktop we always show both forms */
+      .form-card.hidden {
+        display: block;
+      }
+
+      .mode-switch {
+        max-width: 440px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- NAV -->
   <header class="nav">
     <div class="nav-inner">
-      <div class="nav-left">
-        <div class="nav-logo">
+      <div class="brand">
+        <div class="brand-logo">
+          <!-- your logo file -->
           <img src="logo.png" alt="Urban Freight Inc. logo" />
-          <div>
-            <div class="nav-title">Urban Freight Inc.</div>
-            <div class="nav-subtitle">Driver Portal</div>
-          </div>
+        </div>
+        <div class="brand-text">
+          <strong>Urban Freight Inc.</strong>
+          <span>Driver Portal</span>
         </div>
       </div>
-      <div class="nav-right">
-        <div class="nav-pill">
-          <span>Support</span> (559) 825-9890
-        </div>
-        <div class="nav-pill">
-          <span>Dispatch</span> dispatch@urbanfreightinc.com
-        </div>
+      <div class="nav-actions">
+        <a href="tel:15598259890" class="pill">
+          <span class="pill-label">Support</span>
+          <span class="pill-value">(559) 825-9890</span>
+        </a>
+        <a href="mailto:dispatch@urbanfreightinc.com" class="pill">
+          <span class="pill-label">Dispatch</span>
+          <span class="pill-value">dispatch@urbanfreightinc.com</span>
+        </a>
       </div>
     </div>
   </header>
 
-  <main class="page">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-kicker">Drivers · Urban Freight Inc.</div>
-        <h1 class="hero-title">Upload BOLs and request pay in two simple steps.</h1>
-        <p class="hero-subtitle">
-          1) Use the left form when you are <strong>loading</strong> at the shipper. <br />
-          2) Use the right form when you are <strong>delivered</strong> and ready for driver pay.
-        </p>
-        <p class="hero-steps">
-          <strong>Always include:</strong> Driver name, Truck #, Trailer #, Load #, and clear photos of every page.
-        </p>
-      </div>
+  <main>
+    <!-- INTRO -->
+    <section class="intro-card">
+      <div class="intro-label">Drivers · Urban Freight Inc.</div>
+      <div class="intro-title">Upload BOLs and request pay in two simple steps.</div>
+      <p class="intro-copy">
+        1) Use the <strong>Pickup</strong> form while you are loading at the shipper.<br />
+        2) Use the <strong>Delivery</strong> form after you are delivered and ready for driver pay.
+      </p>
+      <p class="intro-small">
+        <strong>Always include:</strong> Driver name, Truck #, Trailer #, Load #, and clear photos of every page.
+      </p>
     </section>
 
-    <!-- MAIN GRID: TWO FORMS -->
-    <section class="grid">
-      <!-- PICKUP BOL / LOADING PHOTOS -->
-      <article class="card">
-        <header class="card-header">
-          <div class="card-tag">
-            <span class="dot-pickup"></span>
+    <!-- STEP 1: CHOOSE WHAT YOU ARE DOING -->
+    <div class="step-label">Step 1 · What are you doing?</div>
+    <div class="mode-switch" id="modeSwitch">
+      <button class="mode-btn active" data-target="pickup-card" type="button">
+        Pickup / Loading
+        <span class="sub">Before leaving shipper</span>
+      </button>
+      <button class="mode-btn" data-target="delivery-card" type="button">
+        Delivery / Driver Pay
+        <span class="sub">After POD signed</span>
+      </button>
+    </div>
+
+    <!-- STEP 2: FILL OUT FORM -->
+    <div class="step-label">Step 2 · Complete the form</div>
+
+    <div class="forms-wrapper">
+      <!-- PICKUP FORM -->
+      <section class="form-card" id="pickup-card">
+        <div class="form-header-row">
+          <div class="chip">
+            <span class="chip-dot"></span>
             Pickup · Before leaving shipper
           </div>
-          <h2 class="card-title">Pickup BOL / Loading Photos</h2>
-          <p class="card-subtitle">
-            Use this while you are being loaded or right after loading. Attach pictures of the BOL,
-            pallets, and trailer before you leave the shipper.
-          </p>
-        </header>
+        </div>
+        <h2 class="form-title">Pickup BOL / Loading Photos</h2>
+        <p class="form-subtitle">
+          Use this while you are being loaded or right after loading. Attach pictures of the BOL, pallets, and trailer
+          before you leave the shipper.
+        </p>
 
         <form
-          id="pickup-form"
-          class="fs-form"
           action="https://formspree.io/f/xzzoaggr"
           method="POST"
           enctype="multipart/form-data"
         >
-          <div class="form-grid">
-            <div class="form-row">
-              <label for="pickup-driver">Driver Name</label>
-              <input
-                id="pickup-driver"
-                name="driver_name"
-                type="text"
-                required
-                placeholder="First and last name"
-                autocomplete="name"
-              />
-            </div>
+          <input type="hidden" name="Form Type" value="Pickup BOL / Loading Photos" />
+          <input type="hidden" name="_subject" value="Pickup BOL / Loading submission" />
 
-            <div class="form-row">
-              <label for="pickup-truck">Truck #</label>
-              <input
-                id="pickup-truck"
-                name="truck_number"
-                type="text"
-                required
-                placeholder="e.g. 509"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="pickup-trailer">Trailer #</label>
-              <input
-                id="pickup-trailer"
-                name="trailer_number"
-                type="text"
-                required
-                placeholder="e.g. 201"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="pickup-load">Load #</label>
-              <input
-                id="pickup-load"
-                name="load_number"
-                type="text"
-                required
-                placeholder="Broker or Urban Freight load #"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="pickup-location">Shipper name / city</label>
-              <input
-                id="pickup-location"
-                name="shipper_location"
-                type="text"
-                placeholder="e.g. Costco – Tracy, CA"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="pickup-files">Upload photos / BOL</label>
-              <input
-                id="pickup-files"
-                name="attachments"
-                type="file"
-                multiple
-                accept=".jpg,.jpeg,.png,.pdf"
-                required
-              />
-              <div class="hint">
-                You can select multiple photos at once. If you use the camera, take one photo,
-                tap “Use photo”, then tap this box again to add more photos.
-              </div>
-            </div>
+          <div>
+            <label for="pickup-driver">Driver Name</label>
+            <input id="pickup-driver" name="Driver Name" placeholder="First and last name" required />
           </div>
 
-          <div class="form-row">
+          <div>
+            <label for="pickup-truck">Truck #</label>
+            <input id="pickup-truck" name="Truck #" placeholder="e.g. 509" required />
+          </div>
+
+          <div>
+            <label for="pickup-trailer">Trailer #</label>
+            <input id="pickup-trailer" name="Trailer #" placeholder="e.g. 201" required />
+          </div>
+
+          <div>
+            <label for="pickup-load">Load #</label>
+            <input id="pickup-load" name="Load #" placeholder="Broker or Urban Freight load #" required />
+          </div>
+
+          <div>
             <label for="pickup-notes">Notes (optional)</label>
             <textarea
               id="pickup-notes"
-              name="notes"
-              placeholder="Any loading issues, damages, or special instructions."
+              name="Notes"
+              placeholder="Any special loading notes, seal info, or issues."
             ></textarea>
           </div>
 
-          <!-- Filled by JS before submit -->
-          <input type="hidden" name="subject" />
-          <textarea name="message" hidden></textarea>
-          <input type="hidden" name="stage" value="Pickup" />
+          <div>
+            <label for="pickup-files">Upload BOL + loading photos</label>
+            <p class="hint">Attach clear photos of every page + pallets + trailer doors.</p>
+            <input
+              id="pickup-files"
+              name="Pickup Files"
+              type="file"
+              accept="image/*,.pdf"
+              multiple
+            />
+            <p class="note">You can select multiple photos at once from your gallery.</p>
+          </div>
 
-          <div class="form-footer">
-            <button type="submit" class="btn">
-              Submit pickup photos
-            </button>
-            <p id="pickup-status" class="status muted">
-              Pickup photos go straight to Urban Freight dispatch.
-            </p>
+          <div class="submit-row">
+            <button type="submit">Submit Pickup BOL</button>
           </div>
         </form>
-      </article>
+      </section>
 
-      <!-- DELIVERY POD / BOL + DRIVER PAY -->
-      <article class="card">
-        <header class="card-header">
-          <div class="card-tag">
-            <span class="dot-delivery"></span>
+      <!-- DELIVERY FORM -->
+      <section class="form-card hidden" id="delivery-card">
+        <div class="form-header-row">
+          <div class="chip delivery">
+            <span class="chip-dot delivery"></span>
             Delivery · After POD signed + ready for pay
           </div>
-          <h2 class="card-title">Delivery POD / BOL + Driver Pay</h2>
-          <p class="card-subtitle">
-            Use this after delivery when the POD/BOL is signed and you are ready to request pay,
-            settlement review, or an advance.
-          </p>
-        </header>
+        </div>
+        <h2 class="form-title">Delivery POD / BOL + Driver Pay</h2>
+        <p class="form-subtitle">
+          Use this after delivery when the POD/BOL is signed and you are ready to request pay, settlement review, or an
+          advance.
+        </p>
 
         <form
-          id="delivery-form"
-          class="fs-form"
           action="https://formspree.io/f/xeonlkkk"
           method="POST"
           enctype="multipart/form-data"
         >
-          <div class="form-grid">
-            <div class="form-row">
-              <label for="delivery-driver">Driver Name</label>
-              <input
-                id="delivery-driver"
-                name="driver_name"
-                type="text"
-                required
-                placeholder="First and last name"
-              />
-            </div>
+          <input type="hidden" name="Form Type" value="Delivery POD / Driver Pay" />
+          <input type="hidden" name="_subject" value="Delivery POD / Driver pay request" />
 
-            <div class="form-row">
-              <label for="delivery-truck">Truck #</label>
-              <input
-                id="delivery-truck"
-                name="truck_number"
-                type="text"
-                required
-                placeholder="e.g. 509"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="delivery-trailer">Trailer #</label>
-              <input
-                id="delivery-trailer"
-                name="trailer_number"
-                type="text"
-                placeholder="e.g. 201"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="delivery-load">Load #</label>
-              <input
-                id="delivery-load"
-                name="load_number"
-                type="text"
-                required
-                placeholder="Broker or Urban Freight load #"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="delivery-location">Delivery city / receiver</label>
-              <input
-                id="delivery-location"
-                name="delivery_location"
-                type="text"
-                placeholder="e.g. Walmart – Phoenix, AZ"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="delivery-pay-type">What are you requesting?</label>
-              <select id="delivery-pay-type" name="pay_type" required>
-                <option value="">Select one…</option>
-                <option value="Trip Pay">Trip Pay</option>
-                <option value="Advance Request">Advance Request</option>
-                <option value="Settlement Question">Settlement Question</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            <div class="form-row">
-              <label for="delivery-amount">Amount requested (if any)</label>
-              <input
-                id="delivery-amount"
-                name="amount_requested"
-                type="text"
-                placeholder="e.g. $250 advance or Trip pay for CA–TX–CA"
-              />
-            </div>
-
-            <div class="form-row">
-              <label for="delivery-files">Upload signed POD / BOL + receipts</label>
-              <input
-                id="delivery-files"
-                name="attachments"
-                type="file"
-                multiple
-                accept=".jpg,.jpeg,.png,.pdf"
-                required
-              />
-              <div class="hint">
-                Attach clear photos of every page plus lumper / detention receipts.
-                You can add multiple photos the same way as on the pickup form.
-              </div>
-            </div>
+          <div>
+            <label for="del-driver">Driver Name</label>
+            <input id="del-driver" name="Driver Name" placeholder="First and last name" required />
           </div>
 
-          <div class="form-row">
-            <label for="delivery-notes">Notes for accounting / dispatch</label>
-            <textarea
-              id="delivery-notes"
-              name="notes"
+          <div>
+            <label for="del-truck">Truck #</label>
+            <input id="del-truck" name="Truck #" placeholder="e.g. 509" required />
+          </div>
+
+          <div>
+            <label for="del-trailer">Trailer #</label>
+            <input id="del-trailer" name="Trailer #" placeholder="e.g. 201" required />
+          </div>
+
+          <div>
+            <label for="del-load">Load #</label>
+            <input id="del-load" name="Load #" placeholder="Broker or Urban Freight load #" required />
+          </div>
+
+          <div>
+            <label for="del-city">Delivery city / receiver</label>
+            <input
+              id="del-city"
+              name="Delivery city / receiver"
+              placeholder="e.g. Walmart – Phoenix, AZ"
               required
-              placeholder="Anything we should know to process your pay quickly."
+            />
+          </div>
+
+          <div>
+            <label for="del-request-type">What are you requesting?</label>
+            <select id="del-request-type" name="Request Type" required>
+              <option value="">Select one…</option>
+              <option value="Driver pay – full trip">Driver pay – full trip</option>
+              <option value="Driver pay – partial / layover / detention">
+                Driver pay – partial / layover / detention
+              </option>
+              <option value="Advance request">Advance request</option>
+              <option value="Settlement question / correction">Settlement question / correction</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="del-amount">Amount requested (if any)</label>
+            <input
+              id="del-amount"
+              name="Amount requested"
+              placeholder="e.g. $250 advance or Trip pay for CA–TX–CA"
+            />
+          </div>
+
+          <div>
+            <label for="del-notes">Notes to payroll / dispatch</label>
+            <textarea
+              id="del-notes"
+              name="Notes"
+              placeholder="Anything we should know about this trip, accessorials, layover, detention, etc."
             ></textarea>
           </div>
 
-          <!-- Filled by JS before submit -->
-          <input type="hidden" name="subject" />
-          <textarea name="message" hidden></textarea>
-          <input type="hidden" name="stage" value="Delivery & Pay" />
+          <div>
+            <label for="del-files">Upload signed POD / BOL + receipts</label>
+            <p class="hint">Attach signed POD/BOL plus fuel / scale / lumper receipts.</p>
+            <input
+              id="del-files"
+              name="Delivery Files"
+              type="file"
+              accept="image/*,.pdf"
+              multiple
+            />
+            <p class="note">You can select multiple photos at once from your gallery.</p>
+          </div>
 
-          <div class="form-footer">
-            <button type="submit" class="btn">
-              Submit delivery & pay request
-            </button>
-            <p id="delivery-status" class="status muted">
-              Delivery documents and pay requests go straight to accounting/dispatch.
-            </p>
+          <div class="submit-row">
+            <button type="submit">Submit Delivery + Pay Request</button>
           </div>
         </form>
-      </article>
-    </section>
+      </section>
+    </div>
   </main>
 
   <script>
-    // Build subject + message for Formspree so emails show useful info
-    function buildEmailMeta(form) {
-      const stage = form.querySelector('input[name="stage"]')?.value || "";
-      const driver = (form.querySelector('[name="driver_name"]')?.value || "").trim();
-      const truck = (form.querySelector('[name="truck_number"]')?.value || "").trim();
-      const load = (form.querySelector('[name="load_number"]')?.value || "").trim();
-      const trailer = (form.querySelector('[name="trailer_number"]')?.value || "").trim();
-      const location =
-        (form.querySelector('[name="shipper_location"]')?.value ||
-         form.querySelector('[name="delivery_location"]')?.value ||
-         ""
-        ).trim();
-      const notes = (form.querySelector('[name="notes"]')?.value || "").trim();
-      const payType = (form.querySelector('[name="pay_type"]')?.value || "").trim();
-      const amount = (form.querySelector('[name="amount_requested"]')?.value || "").trim();
+    // Toggle forms on mobile: show only the selected one.
+    (function () {
+      var buttons = document.querySelectorAll("#modeSwitch .mode-btn");
+      var pickupCard = document.getElementById("pickup-card");
+      var deliveryCard = document.getElementById("delivery-card");
 
-      // Subject line
-      const subjectInput = form.querySelector('input[name="subject"]');
-      if (subjectInput) {
-        let s = "UF · " + (stage || "Driver Submission");
-        if (driver) s += " · " + driver;
-        if (truck) s += " · Truck " + truck;
-        if (load) s += " · Load " + load;
-        if (stage === "Delivery & Pay" && payType) s += " · " + payType;
-        subjectInput.value = s;
+      function setMode(targetId) {
+        buttons.forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.target === targetId);
+        });
+
+        // On small screens hide the other card. On desktop CSS shows both.
+        if (window.innerWidth < 880) {
+          pickupCard.classList.toggle("hidden", targetId !== "pickup-card");
+          deliveryCard.classList.toggle("hidden", targetId !== "delivery-card");
+        }
       }
 
-      // First line / message body
-      const msgField = form.querySelector('textarea[name="message"]');
-      if (msgField) {
-        const lines = [];
-        if (stage) lines.push("Stage: " + stage);
-        if (driver) lines.push("Driver: " + driver);
-        if (truck) lines.push("Truck: " + truck);
-        if (trailer) lines.push("Trailer: " + trailer);
-        if (load) lines.push("Load: " + load);
-        if (location) lines.push("Location: " + location);
-        if (payType) lines.push("Request: " + payType);
-        if (amount) lines.push("Amount: " + amount);
-        if (notes) lines.push("Notes: " + notes);
-
-        msgField.value = lines.join("\n") || "Driver submission from Urban Freight portal.";
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const forms = document.querySelectorAll(".fs-form");
-
-      forms.forEach((form) => {
-        form.addEventListener("submit", async function (event) {
-          event.preventDefault();
-
-          const statusEl =
-            form.id === "pickup-form"
-              ? document.getElementById("pickup-status")
-              : document.getElementById("delivery-status");
-
-          if (!statusEl) return;
-
-          statusEl.textContent = "Submitting… please wait.";
-          statusEl.className = "status muted";
-
-          const submitButton = form.querySelector("button[type='submit']");
-          if (submitButton) submitButton.disabled = true;
-
-          // Fill subject + message before sending
-          buildEmailMeta(form);
-
-          const data = new FormData(form);
-
-          try {
-            const response = await fetch(form.action, {
-              method: form.method,
-              body: data,
-              headers: { Accept: "application/json" },
-            });
-
-            if (response.ok) {
-              statusEl.textContent = "Submitted successfully. Thank you!";
-              statusEl.className = "status success";
-              form.reset();
-            } else {
-              const resData = await response.json().catch(() => null);
-              if (resData && resData.errors) {
-                statusEl.textContent = resData.errors
-                  .map((err) => err.message)
-                  .join(", ");
-              } else {
-                statusEl.textContent =
-                  "There was a problem submitting the form. Please try again.";
-              }
-              statusEl.className = "status error";
-            }
-          } catch (err) {
-            statusEl.textContent =
-              "Network error while submitting. Please check your connection and try again.";
-            statusEl.className = "status error";
-          } finally {
-            if (submitButton) submitButton.disabled = false;
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setMode(btn.dataset.target);
+          // Scroll to forms after switching on small screens
+          if (window.innerWidth < 880) {
+            document.querySelector(".step-label:nth-of-type(2)").scrollIntoView({ behavior: "smooth" });
           }
         });
       });
-    });
+
+      // On resize, if we go back to desktop, ensure both are visible
+      window.addEventListener("resize", function () {
+        if (window.innerWidth >= 880) {
+          pickupCard.classList.remove("hidden");
+          deliveryCard.classList.remove("hidden");
+        } else {
+          var activeBtn = document.querySelector("#modeSwitch .mode-btn.active");
+          if (activeBtn) setMode(activeBtn.dataset.target);
+        }
+      });
+    })();
   </script>
 </body>
 </html>

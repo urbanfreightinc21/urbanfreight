@@ -116,7 +116,7 @@
       color: rgba(255, 255, 255, 0.65);
     }
 
-    /* LAYOUT */
+    /* PAGE LAYOUT */
     .page {
       max-width: 1100px;
       margin: 0 auto;
@@ -125,19 +125,6 @@
 
     .hero {
       margin-bottom: 24px;
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.8fr);
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .hero-main {
       background: linear-gradient(135deg, #0b2447, #19376d);
       color: #fff;
       border-radius: 18px;
@@ -147,7 +134,7 @@
       overflow: hidden;
     }
 
-    .hero-main::before {
+    .hero::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -158,7 +145,7 @@
       pointer-events: none;
     }
 
-    .hero-content {
+    .hero-inner {
       position: relative;
       z-index: 1;
     }
@@ -179,79 +166,22 @@
 
     .hero-subtitle {
       font-size: 13px;
-      color: rgba(226, 232, 240, 0.8);
-      margin-bottom: 12px;
+      color: rgba(226, 232, 240, 0.85);
+      margin-bottom: 10px;
     }
 
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .hero-tag {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.28);
-      background: rgba(15, 23, 42, 0.55);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-tag-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.25);
-    }
-
-    .hero-side {
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 10px;
-    }
-
-    .hero-side-card {
-      border-radius: 16px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 12px 14px;
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.16);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .hero-side-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .hero-side-text {
+    .hero-steps {
       font-size: 12px;
-      color: var(--muted);
+      color: rgba(226, 232, 240, 0.9);
     }
 
-    .hero-side-meta {
-      font-size: 11px;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .hero-side-meta strong {
-      color: var(--text);
+    .hero-steps strong {
       font-weight: 600;
     }
 
-    /* GRID */
     .grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       align-items: flex-start;
     }
@@ -274,30 +204,34 @@
       margin-bottom: 12px;
     }
 
-    .card-title-row {
-      display: flex;
+    .card-tag {
+      font-size: 11px;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 4px;
+    }
+
+    .dot-pickup {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.22);
+    }
+
+    .dot-delivery {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #eab308;
+      box-shadow: 0 0 0 6px rgba(234, 179, 8, 0.22);
     }
 
     .card-title {
       font-size: 16px;
       font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .card-pill {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: #f9fafb;
-      color: var(--muted);
-      white-space: nowrap;
+      margin-bottom: 4px;
     }
 
     .card-subtitle {
@@ -305,7 +239,7 @@
       color: var(--muted);
     }
 
-    /* FORMS */
+    /* FORM LAYOUT */
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -319,7 +253,7 @@
     }
 
     .form-row {
-      margin-bottom: 8px;
+      margin-top: 8px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -420,32 +354,6 @@
     .status.muted {
       color: var(--muted);
     }
-
-    /* SMALL UTILITIES */
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.22);
-    }
-
-    .pill-dot-idle {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #eab308;
-      box-shadow: 0 0 0 6px rgba(234, 179, 8, 0.22);
-    }
-
-    .small-text {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .small-text strong {
-      color: var(--text);
-    }
   </style>
 </head>
 <body>
@@ -475,68 +383,37 @@
   <main class="page">
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-main">
-        <div class="hero-content">
-          <div class="hero-kicker">Drivers · Urban Freight Inc.</div>
-          <h1 class="hero-title">Upload BOLs and request pay in one place.</h1>
-          <p class="hero-subtitle">
-            Use the forms below to upload BOL / POD documents and request trip pay or advances.
-            Make sure you include the correct driver name, truck number, and load number.
-          </p>
-          <div class="hero-tags">
-            <div class="hero-tag">
-              <span class="hero-tag-dot"></span>
-              <span>Faster settlements</span>
-            </div>
-            <div class="hero-tag">
-              <span>Photo uploads supported (JPG / PNG / PDF)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-side">
-        <div class="hero-side-card">
-          <div class="hero-side-title">Before you submit</div>
-          <div class="hero-side-text">
-            • Make sure every page of the BOL is clear and readable.<br />
-            • Include lumper and detention receipts if applicable.<br />
-            • Double check your load number and trailer number.
-          </div>
-        </div>
-        <div class="hero-side-card">
-          <div class="hero-side-title">Processing status</div>
-          <div class="hero-side-meta">
-            <span><strong>Same-day</strong> for complete trips submitted before 2 PM PST.</span>
-            <span><strong>Next business day</strong> for evening uploads.</span>
-          </div>
-        </div>
+      <div class="hero-inner">
+        <div class="hero-kicker">Drivers · Urban Freight Inc.</div>
+        <h1 class="hero-title">Upload BOLs and request pay in two simple steps.</h1>
+        <p class="hero-subtitle">
+          1) Use the left form when you are <strong>loading</strong> at the shipper. <br />
+          2) Use the right form when you are <strong>delivered</strong> and ready for driver pay.
+        </p>
+        <p class="hero-steps">
+          <strong>Always include:</strong> Driver name, Truck #, Trailer #, Load #, and clear photos of every page.
+        </p>
       </div>
     </section>
 
-    <!-- MAIN GRID -->
+    <!-- MAIN GRID: TWO FORMS -->
     <section class="grid">
-      <!-- BOL / POD UPLOAD -->
+      <!-- PICKUP BOL / LOADING PHOTOS -->
       <article class="card">
         <header class="card-header">
-          <div class="card-title-row">
-            <h2 class="card-title">
-              <span class="pill-dot"></span>
-              Upload BOL / POD & Documents
-            </h2>
-            <span class="card-pill">Form goes to Formspree BOL endpoint</span>
+          <div class="card-tag">
+            <span class="dot-pickup"></span>
+            Pickup · Before leaving shipper
           </div>
+          <h2 class="card-title">Pickup BOL / Loading Photos</h2>
           <p class="card-subtitle">
-            Use this form to upload BOLs, PODs, lumper receipts, detention receipts, and any supporting documents.
-            <br />
-            <span class="small-text">
-              Driver name, type, truck #, and load # are included in the subject and first line of the email.
-            </span>
+            Use this while you are being loaded or right after loading. Attach pictures of the BOL,
+            pallets, and trailer before you leave the shipper.
           </p>
         </header>
 
         <form
-          id="bol-form"
+          id="pickup-form"
           class="fs-form"
           action="https://formspree.io/f/xzzoaggr"
           method="POST"
@@ -544,9 +421,9 @@
         >
           <div class="form-grid">
             <div class="form-row">
-              <label for="bol-driver-name">Driver Name</label>
+              <label for="pickup-driver">Driver Name</label>
               <input
-                id="bol-driver-name"
+                id="pickup-driver"
                 name="driver_name"
                 type="text"
                 required
@@ -556,20 +433,9 @@
             </div>
 
             <div class="form-row">
-              <label for="bol-type">Type</label>
-              <select id="bol-type" name="doc_type" required>
-                <option value="">Select type…</option>
-                <option value="BOL / POD">BOL / POD</option>
-                <option value="Lumper">Lumper Receipt</option>
-                <option value="Detention">Detention</option>
-                <option value="TONU / Other">TONU / Other</option>
-              </select>
-            </div>
-
-            <div class="form-row">
-              <label for="bol-truck">Truck #</label>
+              <label for="pickup-truck">Truck #</label>
               <input
-                id="bol-truck"
+                id="pickup-truck"
                 name="truck_number"
                 type="text"
                 required
@@ -578,19 +444,20 @@
             </div>
 
             <div class="form-row">
-              <label for="bol-trailer">Trailer #</label>
+              <label for="pickup-trailer">Trailer #</label>
               <input
-                id="bol-trailer"
+                id="pickup-trailer"
                 name="trailer_number"
                 type="text"
-                placeholder="If applicable"
+                required
+                placeholder="e.g. 201"
               />
             </div>
 
             <div class="form-row">
-              <label for="bol-load">Load #</label>
+              <label for="pickup-load">Load #</label>
               <input
-                id="bol-load"
+                id="pickup-load"
                 name="load_number"
                 type="text"
                 required
@@ -599,72 +466,73 @@
             </div>
 
             <div class="form-row">
-              <label for="bol-files">Upload files</label>
+              <label for="pickup-location">Shipper name / city</label>
               <input
-                id="bol-files"
+                id="pickup-location"
+                name="shipper_location"
+                type="text"
+                placeholder="e.g. Costco – Tracy, CA"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="pickup-files">Upload photos / BOL</label>
+              <input
+                id="pickup-files"
                 name="attachments"
                 type="file"
                 multiple
-                accept="image/*,.pdf"
-                capture="environment"
+                accept=".jpg,.jpeg,.png,.pdf"
                 required
               />
               <div class="hint">
-                You can attach multiple photos or PDFs in one submission.
-                On most phones, take a photo, tap “Use photo”, then tap this field again to take another.
+                You can select multiple photos at once. If you use the camera, take one photo,
+                tap “Use photo”, then tap this box again to add more photos.
               </div>
             </div>
           </div>
 
           <div class="form-row">
-            <label for="bol-notes">Notes (optional)</label>
+            <label for="pickup-notes">Notes (optional)</label>
             <textarea
-              id="bol-notes"
+              id="pickup-notes"
               name="notes"
-              placeholder="Extra info for dispatch or accounting (delivery issues, shortages, etc.)"
+              placeholder="Any loading issues, damages, or special instructions."
             ></textarea>
           </div>
 
-          <!-- Dynamic email subject and message for Formspree -->
-          <input
-            type="hidden"
-            name="subject"
-            value="UF BOL/{{ doc_type }} · {{ driver_name }} · Truck {{ truck_number }} · Load {{ load_number }}"
-          />
+          <!-- Filled by JS before submit -->
+          <input type="hidden" name="subject" />
           <textarea name="message" hidden></textarea>
+          <input type="hidden" name="stage" value="Pickup" />
 
           <div class="form-footer">
             <button type="submit" class="btn">
-              Submit documents
+              Submit pickup photos
             </button>
-            <p id="bol-status" class="status muted">
-              Your data will be sent securely to Urban Freight’s office.
+            <p id="pickup-status" class="status muted">
+              Pickup photos go straight to Urban Freight dispatch.
             </p>
           </div>
         </form>
       </article>
 
-      <!-- DRIVER PAY REQUEST -->
+      <!-- DELIVERY POD / BOL + DRIVER PAY -->
       <article class="card">
         <header class="card-header">
-          <div class="card-title-row">
-            <h2 class="card-title">
-              <span class="pill-dot-idle"></span>
-              Driver Pay / Advance Request
-            </h2>
-            <span class="card-pill">Form goes to Formspree Pay endpoint</span>
+          <div class="card-tag">
+            <span class="dot-delivery"></span>
+            Delivery · After POD signed + ready for pay
           </div>
+          <h2 class="card-title">Delivery POD / BOL + Driver Pay</h2>
           <p class="card-subtitle">
-            Use this form to request trip pay, a settlement review, or an advance.
-            <br />
-            <span class="small-text">
-              Driver name, type, truck #, and load # are also included in the subject and first line of the email.
-            </span>
+            Use this after delivery when the POD/BOL is signed and you are ready to request pay,
+            settlement review, or an advance.
           </p>
         </header>
 
         <form
-          id="pay-form"
+          id="delivery-form"
           class="fs-form"
           action="https://formspree.io/f/xeonlkkk"
           method="POST"
@@ -672,9 +540,9 @@
         >
           <div class="form-grid">
             <div class="form-row">
-              <label for="pay-driver-name">Driver Name</label>
+              <label for="delivery-driver">Driver Name</label>
               <input
-                id="pay-driver-name"
+                id="delivery-driver"
                 name="driver_name"
                 type="text"
                 required
@@ -683,20 +551,9 @@
             </div>
 
             <div class="form-row">
-              <label for="pay-type">Type</label>
-              <select id="pay-type" name="pay_type" required>
-                <option value="">Select type…</option>
-                <option value="Trip Pay">Trip Pay</option>
-                <option value="Advance Request">Advance Request</option>
-                <option value="Settlement Question">Settlement Question</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            <div class="form-row">
-              <label for="pay-truck">Truck #</label>
+              <label for="delivery-truck">Truck #</label>
               <input
-                id="pay-truck"
+                id="delivery-truck"
                 name="truck_number"
                 type="text"
                 required
@@ -705,65 +562,95 @@
             </div>
 
             <div class="form-row">
-              <label for="pay-load">Load # (if applicable)</label>
+              <label for="delivery-trailer">Trailer #</label>
               <input
-                id="pay-load"
+                id="delivery-trailer"
+                name="trailer_number"
+                type="text"
+                placeholder="e.g. 201"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="delivery-load">Load #</label>
+              <input
+                id="delivery-load"
                 name="load_number"
                 type="text"
-                placeholder="If this is tied to a specific load"
+                required
+                placeholder="Broker or Urban Freight load #"
               />
             </div>
 
             <div class="form-row">
-              <label for="pay-amount">Amount requested</label>
+              <label for="delivery-location">Delivery city / receiver</label>
               <input
-                id="pay-amount"
+                id="delivery-location"
+                name="delivery_location"
+                type="text"
+                placeholder="e.g. Walmart – Phoenix, AZ"
+              />
+            </div>
+
+            <div class="form-row">
+              <label for="delivery-pay-type">What are you requesting?</label>
+              <select id="delivery-pay-type" name="pay_type" required>
+                <option value="">Select one…</option>
+                <option value="Trip Pay">Trip Pay</option>
+                <option value="Advance Request">Advance Request</option>
+                <option value="Settlement Question">Settlement Question</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="delivery-amount">Amount requested (if any)</label>
+              <input
+                id="delivery-amount"
                 name="amount_requested"
                 type="text"
-                placeholder="e.g. $250 advance, or 'Trip pay for CA–TX–CA'"
+                placeholder="e.g. $250 advance or Trip pay for CA–TX–CA"
               />
             </div>
 
             <div class="form-row">
-              <label for="pay-files">Upload supporting documents (optional)</label>
+              <label for="delivery-files">Upload signed POD / BOL + receipts</label>
               <input
-                id="pay-files"
+                id="delivery-files"
                 name="attachments"
                 type="file"
                 multiple
-                accept="image/*,.pdf"
-                capture="environment"
+                accept=".jpg,.jpeg,.png,.pdf"
+                required
               />
               <div class="hint">
-                You can attach rate cons, BOLs, or other proof if needed.
+                Attach clear photos of every page plus lumper / detention receipts.
+                You can add multiple photos the same way as on the pickup form.
               </div>
             </div>
           </div>
 
           <div class="form-row">
-            <label for="pay-notes">Notes</label>
+            <label for="delivery-notes">Notes for accounting / dispatch</label>
             <textarea
-              id="pay-notes"
+              id="delivery-notes"
               name="notes"
               required
-              placeholder="Explain what you’re requesting so accounting can process it quickly."
+              placeholder="Anything we should know to process your pay quickly."
             ></textarea>
           </div>
 
-          <!-- Dynamic email subject and message for Formspree -->
-          <input
-            type="hidden"
-            name="subject"
-            value="UF Pay/{{ pay_type }} · {{ driver_name }} · Truck {{ truck_number }} · Load {{ load_number }}"
-          />
+          <!-- Filled by JS before submit -->
+          <input type="hidden" name="subject" />
           <textarea name="message" hidden></textarea>
+          <input type="hidden" name="stage" value="Delivery & Pay" />
 
           <div class="form-footer">
             <button type="submit" class="btn">
-              Submit pay request
+              Submit delivery & pay request
             </button>
-            <p id="pay-status" class="status muted">
-              You’ll see a confirmation message here after you submit.
+            <p id="delivery-status" class="status muted">
+              Delivery documents and pay requests go straight to accounting/dispatch.
             </p>
           </div>
         </form>
@@ -772,38 +659,51 @@
   </main>
 
   <script>
-    // Build a summary line for Formspree "message" so email preview shows key info
-    function buildSummary(form) {
-      const isBol = form.id === "bol-form";
-
+    // Build subject + message for Formspree so emails show useful info
+    function buildEmailMeta(form) {
+      const stage = form.querySelector('input[name="stage"]')?.value || "";
       const driver = (form.querySelector('[name="driver_name"]')?.value || "").trim();
       const truck = (form.querySelector('[name="truck_number"]')?.value || "").trim();
       const load = (form.querySelector('[name="load_number"]')?.value || "").trim();
+      const trailer = (form.querySelector('[name="trailer_number"]')?.value || "").trim();
+      const location =
+        (form.querySelector('[name="shipper_location"]')?.value ||
+         form.querySelector('[name="delivery_location"]')?.value ||
+         ""
+        ).trim();
       const notes = (form.querySelector('[name="notes"]')?.value || "").trim();
+      const payType = (form.querySelector('[name="pay_type"]')?.value || "").trim();
+      const amount = (form.querySelector('[name="amount_requested"]')?.value || "").trim();
 
-      let type = "";
-      if (isBol) {
-        type = form.querySelector('[name="doc_type"]')?.value || "";
-      } else {
-        type = form.querySelector('[name="pay_type"]')?.value || "";
+      // Subject line
+      const subjectInput = form.querySelector('input[name="subject"]');
+      if (subjectInput) {
+        let s = "UF · " + (stage || "Driver Submission");
+        if (driver) s += " · " + driver;
+        if (truck) s += " · Truck " + truck;
+        if (load) s += " · Load " + load;
+        if (stage === "Delivery & Pay" && payType) s += " · " + payType;
+        subjectInput.value = s;
       }
 
-      const parts = [];
-      if (driver) parts.push(`Driver: ${driver}`);
-      if (type) parts.push(`Type: ${type}`);
-      if (truck) parts.push(`Truck: ${truck}`);
-      if (load) parts.push(`Load: ${load}`);
-
-      let summary = parts.join(" · ");
-      if (notes) summary += `\nNotes: ${notes}`;
-
+      // First line / message body
       const msgField = form.querySelector('textarea[name="message"]');
       if (msgField) {
-        msgField.value = summary || "Driver submission from portal";
+        const lines = [];
+        if (stage) lines.push("Stage: " + stage);
+        if (driver) lines.push("Driver: " + driver);
+        if (truck) lines.push("Truck: " + truck);
+        if (trailer) lines.push("Trailer: " + trailer);
+        if (load) lines.push("Load: " + load);
+        if (location) lines.push("Location: " + location);
+        if (payType) lines.push("Request: " + payType);
+        if (amount) lines.push("Amount: " + amount);
+        if (notes) lines.push("Notes: " + notes);
+
+        msgField.value = lines.join("\n") || "Driver submission from Urban Freight portal.";
       }
     }
 
-    // Generic handler for all Formspree forms on the page
     document.addEventListener("DOMContentLoaded", function () {
       const forms = document.querySelectorAll(".fs-form");
 
@@ -811,9 +711,10 @@
         form.addEventListener("submit", async function (event) {
           event.preventDefault();
 
-          const statusEl = form.id === "bol-form"
-            ? document.getElementById("bol-status")
-            : document.getElementById("pay-status");
+          const statusEl =
+            form.id === "pickup-form"
+              ? document.getElementById("pickup-status")
+              : document.getElementById("delivery-status");
 
           if (!statusEl) return;
 
@@ -823,8 +724,8 @@
           const submitButton = form.querySelector("button[type='submit']");
           if (submitButton) submitButton.disabled = true;
 
-          // Fill in the hidden "message" field before sending to Formspree
-          buildSummary(form);
+          // Fill subject + message before sending
+          buildEmailMeta(form);
 
           const data = new FormData(form);
 
@@ -832,9 +733,7 @@
             const response = await fetch(form.action, {
               method: form.method,
               body: data,
-              headers: {
-                Accept: "application/json",
-              },
+              headers: { Accept: "application/json" },
             });
 
             if (response.ok) {

@@ -501,18 +501,33 @@
             ></textarea>
           </div>
 
-          <div>
-            <label for="pickup-files">Upload BOL + loading photos</label>
-            <p class="hint">Attach clear photos of every page + pallets + trailer doors.</p>
-            <input
-              id="pickup-files"
-              name="Pickup Files"
-              type="file"
-              accept="image/*,.pdf"
-              multiple
-            />
-            <p class="note">You can select multiple photos at once from your gallery.</p>
-          </div>
+         <div>
+  <label for="pickup-files">Upload BOL + loading photos</label>
+  <p class="hint">Take one photo per button press. Use “Add another photo” for extra pages or pallets.</p>
+
+  <div class="file-group" id="pickup-files-group">
+    <input
+      id="pickup-files"
+      name="Pickup Files 1"
+      type="file"
+      accept="image/*,.pdf"
+      capture="environment"
+    />
+  </div>
+
+  <button
+    type="button"
+    class="add-photo-btn"
+    data-target="pickup-files-group"
+  >
+    + Add another photo
+  </button>
+
+  <p class="note">
+    All photos you take here will be sent together with this Pickup form.
+  </p>
+</div>
+
 
           <div class="submit-row">
             <button type="submit">Submit Pickup BOL</button>
@@ -604,18 +619,33 @@
             ></textarea>
           </div>
 
-          <div>
-            <label for="del-files">Upload signed POD / BOL + receipts</label>
-            <p class="hint">Attach signed POD/BOL plus fuel / scale / lumper receipts.</p>
-            <input
-              id="del-files"
-              name="Delivery Files"
-              type="file"
-              accept="image/*,.pdf"
-              multiple
-            />
-            <p class="note">You can select multiple photos at once from your gallery.</p>
-          </div>
+         <div>
+  <label for="del-files">Upload signed POD / BOL + receipts</label>
+  <p class="hint">Take one photo per button press. Use “Add another photo” for extra pages or receipts.</p>
+
+  <div class="file-group" id="delivery-files-group">
+    <input
+      id="del-files"
+      name="Delivery Files 1"
+      type="file"
+      accept="image/*,.pdf"
+      capture="environment"
+    />
+  </div>
+
+  <button
+    type="button"
+    class="add-photo-btn"
+    data-target="delivery-files-group"
+  >
+    + Add another photo
+  </button>
+
+  <p class="note">
+    All photos you take here will be sent together with this Delivery form.
+  </p>
+</div>
+
 
           <div class="submit-row">
             <button type="submit">Submit Delivery + Pay Request</button>
@@ -665,42 +695,37 @@
     });
   })();
 
-  // Allow true multi-capture with the camera: keep previous photos instead of replacing.
+  // Allow multiple camera photos by adding more file inputs.
   (function () {
-    function enableMultiCapture(inputId) {
-      var input = document.getElementById(inputId);
-      if (!input) return;
+    function setupAddPhoto(groupId, baseName) {
+      var group = document.getElementById(groupId);
+      if (!group) return;
 
-      var storedFiles = [];
+      var button = document.querySelector(
+        '.add-photo-btn[data-target="' + groupId + '"]'
+      );
+      if (!button) return;
 
-      input.addEventListener("change", function () {
-        var newFiles = Array.from(input.files || []);
+      var index = 2;
 
-        // Merge old + new selections
-        storedFiles = storedFiles.concat(newFiles);
+      button.addEventListener("click", function () {
+        var firstInput = group.querySelector('input[type="file"]');
+        if (!firstInput) return;
 
-        // Optional: de-duplicate by name+size
-        var seen = {};
-        storedFiles = storedFiles.filter(function (file) {
-          var key = file.name + ":" + file.size;
-          if (seen[key]) return false;
-          seen[key] = true;
-          return true;
-        });
-
-        // Build a new FileList with all files
-        var dt = new DataTransfer();
-        storedFiles.forEach(function (file) {
-          dt.items.add(file);
-        });
-        input.files = dt.files;
+        var clone = firstInput.cloneNode();
+        clone.id = "";              // only first input keeps the id
+        clone.name = baseName + " " + index;
+        clone.value = "";
+        group.appendChild(clone);
+        index++;
       });
     }
 
-    enableMultiCapture("pickup-files");
-    enableMultiCapture("del-files");
+    setupAddPhoto("pickup-files-group", "Pickup Files");
+    setupAddPhoto("delivery-files-group", "Delivery Files");
   })();
 </script>
+
 
 </body>
 </html>

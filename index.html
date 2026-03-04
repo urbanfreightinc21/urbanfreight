@@ -2,579 +2,700 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Urban Freight Inc | Refrigerated Trucking & Freight Brokerage</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Urban Freight Inc | Refrigerated Trucking & Freight Brokerage</title>
+  <meta name="description" content="Urban Freight Inc is a Fresno, CA–based refrigerated carrier and freight brokerage specializing in temperature-controlled truckload freight on CA–TX and CA–MD lanes." />
+
   <style>
-    :root {
-      --primary: #0b2447;
-      --primary-light: #19376d;
-      --accent: #00b4d8;
-      --bg: #f3f4f6;
-      --text: #1f2933;
+    :root{
+      /* Urban Freight palette (blue replaces “yellow”) */
+      --bg: #0b1220;
+      --bg2:#0f172a;
+      --panel:#111b31;
+      --text:#e7eefc;
+      --muted:#a9b6d3;
+      --line: rgba(255,255,255,.12);
+
+      --brand:#2563EB;    /* primary blue */
+      --brand2:#1E3A8A;   /* deeper blue */
+      --chip:#0b2a78;
+
+      --white:#ffffff;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --radius: 18px;
+
+      --max: 1160px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--text);
-      line-height: 1.6;
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(37,99,235,.35), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(30,58,138,.35), transparent 55%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height:1.45;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a{ color:inherit; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 20px; }
 
-    /* Top nav */
-    .nav {
-      background: rgba(11, 36, 71, 0.96);
-      color: #fff;
-      padding: 12px 24px;
+    /* Header */
+    header{
       position: sticky;
       top: 0;
-      z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .brand img{
+      width:44px;
+      height:44px;
+      object-fit:contain;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+    }
+    .brand strong{
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+    .brand span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top:2px;
     }
 
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+    }
+    nav a{
+      text-decoration:none;
+      color: var(--muted);
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: background .15s ease, color .15s ease;
+    }
+    nav a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.06);
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
+    .ctaRow{
+      display:flex;
+      align-items:center;
       gap: 10px;
     }
-
-    .nav-logo {
-      height: 40px;
-      width: auto;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.22);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      border-color: rgba(255,255,255,.12);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg, #2f74ff, #2446b9);
+    }
+    .btn.small{
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .nav-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+    /* Mobile nav */
+    .menuBtn{
+      display:none;
+      width:44px; height:44px;
+      border-radius: 12px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor:pointer;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      font-size: 0.95rem;
+    .menuPanel{
+      display:none;
+      border-top: 1px solid var(--line);
+      padding: 12px 0 16px;
     }
-
-    .nav-links a {
-      opacity: 0.9;
+    .menuPanel a{
+      display:block;
+      text-decoration:none;
+      color: var(--muted);
+      padding: 12px 10px;
+      border-radius: 12px;
     }
-
-    .nav-links a:hover {
-      opacity: 1;
-      text-decoration: underline;
+    .menuPanel a:hover{
+      background: rgba(255,255,255,.06);
+      color: var(--text);
     }
-
-    .nav-cta {
-      padding: 7px 14px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #002033;
-      font-weight: 600;
-      font-size: 0.9rem;
+    .menuPanel .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding: 10px 10px 0;
     }
 
     /* Hero */
-    .hero {
-      background: radial-gradient(circle at top left, #1f4a8a, #050816);
-      color: #fff;
-      padding: 50px 16px 40px;
+    .hero{
+      padding: 54px 0 22px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--brand);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.18);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -.6px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 58ch;
+      margin: 0 0 18px;
+    }
+    .pillRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 18px 0 14px;
+    }
+    .pill{
+      font-size: 13px;
+      color: #cfe0ff;
+      background: rgba(37,99,235,.12);
+      border: 1px solid rgba(37,99,235,.22);
+      padding: 7px 10px;
+      border-radius: 999px;
     }
 
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 32px;
-      align-items: center;
+    .heroCard{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
     }
-
-    .hero-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.8rem;
-      opacity: 0.9;
+    .heroCard .top{
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
     }
-
-    .hero-title {
-      margin-top: 8px;
-      font-size: clamp(2rem, 2.7vw + 1rem, 2.8rem);
-      font-weight: 700;
-    }
-
-    .hero-sub {
-      margin-top: 12px;
-      font-size: 1rem;
-      max-width: 520px;
-      opacity: 0.95;
-    }
-
-    .hero-tags {
-      margin-top: 14px;
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
-
-    .hero-cta-row {
-      margin-top: 22px;
-      display: flex;
-      flex-wrap: wrap;
+    .heroCard .top strong{ font-size: 14px; }
+    .heroCard .top span{ display:block; color: var(--muted); font-size: 12px; margin-top:4px; }
+    .heroCard .body{
+      padding: 14px 18px 18px;
+      display:grid;
       gap: 12px;
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
+    .mini{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(15,23,42,.45);
+    }
+    .mini b{ display:block; font-size: 13px; }
+    .mini p{ margin:4px 0 0; color: var(--muted); font-size: 13px; }
+    .icon{
+      width:36px; height:36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(37,99,235,.35), rgba(30,58,138,.25));
+      border: 1px solid rgba(37,99,235,.22);
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      color:#d6e4ff;
     }
 
-    .btn-primary {
-      background: var(--accent);
-      color: #002033;
+    /* Sections */
+    section{
+      padding: 42px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .sectionHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    h2{
+      margin:0;
+      font-size: 26px;
+      letter-spacing: -.2px;
+    }
+    .lead{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 14px;
     }
 
-    .btn-outline {
-      background: transparent;
-      color: #e5e7eb;
-      border: 1px solid rgba(229, 231, 235, 0.6);
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .card{
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .hero-note {
-      margin-top: 14px;
-      font-size: 0.8rem;
-      opacity: 0.8;
+    /* Numbers */
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
-
-    .hero-card {
-      background: rgba(15, 23, 42, 0.9);
+    .stat{
+      padding: 16px;
       border-radius: 16px;
-      padding: 18px 18px 20px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .stat b{
+      display:block;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .stat span{
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .hero-card-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+    /* Callout */
+    .callout{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 16px;
+      align-items: stretch;
     }
-
-    .hero-stat-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      font-size: 0.8rem;
+    .callout .box{
+      background: linear-gradient(135deg, rgba(37,99,235,.20), rgba(30,58,138,.12));
+      border: 1px solid rgba(37,99,235,.22);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
     }
-
-    .hero-stat {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 10px;
-      padding: 8px 10px;
-      border: 1px solid rgba(51, 65, 85, 0.9);
-    }
-
-    .hero-stat-label {
-      opacity: 0.7;
-      font-size: 0.75rem;
-    }
-
-    .hero-stat-value {
-      font-weight: 600;
-      margin-top: 2px;
-      font-size: 0.9rem;
-    }
-
-    /* Main sections */
-    .section {
-      max-width: 1100px;
-      margin: 32px auto 0;
-      padding: 0 16px 8px;
-    }
-
-    .section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-      color: var(--primary);
-    }
-
-    .section p {
-      font-size: 0.95rem;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 24px;
-      margin-top: 12px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
-      border: 1px solid rgba(203, 213, 225, 0.7);
-    }
-
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-      color: var(--primary-light);
-    }
-
-    .card ul {
-      margin-top: 6px;
-      padding-left: 18px;
-      font-size: 0.92rem;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-      font-size: 0.8rem;
-    }
-
-    .pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #e5f4ff;
-      color: #064663;
-    }
-
-    .by-numbers {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 14px;
+    .callout h3{ margin:0 0 8px; font-size:18px; }
+    .callout p{ margin:0; color: var(--muted); font-size:14px; }
+    .callout .actions{
       margin-top: 14px;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
     }
 
-    .metric {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 12px 14px;
-      border: 1px solid rgba(203, 213, 225, 0.9);
-      box-shadow: 0 3px 10px rgba(15, 23, 42, 0.06);
+    /* Footer */
+    footer{
+      padding: 26px 0 36px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.08);
     }
-
-    .metric-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #6b7280;
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap:wrap;
+      align-items:center;
     }
+    .foot a{ color: var(--muted); text-decoration:none; }
+    .foot a:hover{ color: var(--text); }
 
-    .metric-value {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-top: 4px;
-      color: var(--primary);
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .stats{ grid-template-columns: 1fr 1fr; }
+      .callout{ grid-template-columns: 1fr; }
     }
-
-    .metric-sub {
-      font-size: 0.85rem;
-      margin-top: 2px;
-      color: #4b5563;
+    @media (max-width: 860px){
+      nav{ display:none; }
+      .menuBtn{ display:inline-grid; place-items:center; }
+      .menuPanel{ display:none; }
+      .menuPanel.open{ display:block; }
     }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 18px;
-      margin-top: 12px;
-      font-size: 0.95rem;
-    }
-
-    .contact-box {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 14px 16px;
-      border: 1px solid rgba(209, 213, 219, 0.9);
-    }
-
-    footer {
-      margin-top: 30px;
-      padding: 18px 12px 22px;
-      text-align: center;
-      font-size: 0.83rem;
-      color: #6b7280;
-      border-top: 1px solid rgba(209, 213, 219, 0.8);
-      background: #f9fafb;
-    }
-
-    footer a {
-      color: var(--primary-light);
-      margin: 0 6px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-/* Make Driver Portal + Call Dispatch buttons solid and readable in the Drivers card */
-.contact-box .btn-outline {
-  background: #ffffff;
-  color: var(--primary-light);
-  border-color: var(--primary-light);
-  font-weight: 600;
-}
-
-    @media (max-width: 800px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .split,
-      .contact-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .nav-inner {
-        flex-wrap: wrap;
-      }
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-      }
-      .hero {
-        padding-top: 34px;
-      }
+    @media (max-width: 520px){
+      h1{ font-size: 34px; }
+      .btn{ width:100%; }
+      .ctaRow{ display:none; } /* keep header clean; mobile CTAs go in menu */
     }
   </style>
 </head>
+
 <body>
-  <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="nav-left">
-        <img src="logo.png" alt="Urban Freight Inc Logo" class="nav-logo" />
-        <div class="nav-title">Urban Freight Inc</div>
-      </div>
-     <div class="nav-links">
-  <a href="#about">About</a>
-  <a href="#services">Services</a>
-  <a href="#numbers">By the Numbers</a>
-  <a href="driver-portal.html">Driver Portal</a>
-  <a href="apply.html" class="nav-cta">Drive With Us</a>
-</div>
-
-    </div>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-kicker">Refrigerated Truckload • CA–TX • CA–MD</div>
-        <h1 class="hero-title">Reliable Capacity For Your Temperature-Controlled Freight.</h1>
-        <p class="hero-sub">
-          Urban Freight Inc is a Fresno, CA–based refrigerated carrier and freight brokerage.
-          We partner with shippers and brokers who need consistent, on-time service backed
-          by modern equipment and hands-on dispatch.
-        </p>
-        <p class="hero-tags">
-          MC &amp; DOT registered • Insured carrier • Reefer specialists
-        </p>
-
-        <div class="hero-cta-row">
-  <a href="tel:+15598259890" class="btn btn-primary">
-    Ship With Urban (Call Now)
-  </a>
-  <a href="apply.html" class="btn btn-outline">
-    Drive With Us
-  </a>
-</div>
-
-
-        <!-- UPDATED CTA / DISCLOSURE -->
-        <p class="hero-note">
-          By providing your mobile number to Urban Freight Inc. (for example on our online
-          application or when speaking with our staff), you agree to receive SMS messages for
-          security codes and operational alerts related to your account and loads. Message
-          frequency varies. Message &amp; data rates may apply. Text <strong>STOP</strong> to
-          unsubscribe and <strong>HELP</strong> for help. See our
-          <a href="privacy.html">Privacy Policy</a> and
-          <a href="sms-terms.html">SMS Terms &amp; Conditions</a>.
-        </p>
-      </div>
-
-      <aside class="hero-card">
-        <div class="hero-card-title">Operations Snapshot</div>
-        <div class="hero-stat-row">
-          <div class="hero-stat">
-            <div class="hero-stat-label">Primary Lanes</div>
-            <div class="hero-stat-value">CA ↔ TX • CA ↔ MD ↔ CA</div>
+  <header>
+    <div class="wrap">
+      <div class="head">
+        <a class="brand" href="/" aria-label="Urban Freight Home">
+          <img src="/logo.png" alt="Urban Freight Inc logo" />
+          <div>
+            <strong>Urban Freight Inc</strong>
+            <span>Refrigerated Trucking • Freight Brokerage</span>
           </div>
-          <div class="hero-stat">
-            <div class="hero-stat-label">Equipment</div>
-            <div class="hero-stat-value">Reefers • Late-model tractors</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-label">Freight</div>
-            <div class="hero-stat-value">Food • Beverage • Produce</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-label">Support</div>
-            <div class="hero-stat-value">Hands-on dispatch</div>
-          </div>
+        </a>
+
+        <nav aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#numbers">By the Numbers</a>
+          <a href="/driver-portal.html">Driver Portal</a>
+          <a href="/apply.html">Drive With Us</a>
+        </nav>
+
+        <div class="ctaRow">
+          <a class="btn small" href="tel:+15598259890">Call Dispatch</a>
+          <a class="btn primary small" href="/apply.html">Apply to Drive</a>
         </div>
-      </aside>
-    </div>
-  </section>
 
-  <!-- ABOUT + SERVICES -->
-  <section class="section" id="about">
-    <h2>Excellence Delivered on Your CA–TX and CA–MD Lanes</h2>
-    <div class="split">
-      <div>
-        <p>
-          Urban Freight Inc was built by people who understand trucking from the ground up.
-          Based in Fresno, California, we focus on refrigerated freight and practical, direct
-          communication with brokers and shippers.
-        </p>
-        <p style="margin-top:6px;">
-          Our core refrigerated lanes operate between California and Texas, as well as
-          long-haul round-trip operations between California and Maryland. These lanes are
-          consistent, year-round, and built for both shippers who need reliability and drivers
-          who want predictable miles.
-        </p>
+        <button class="menuBtn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
+          ☰
+        </button>
       </div>
-      <div class="card" id="services">
-        <h3>Services</h3>
-        <ul>
-          <li>Refrigerated truckload (reefer)</li>
-          <li>CA–TX and CA–MD long-haul lanes</li>
-          <li>Live load/unload and drop options (where available)</li>
-          <li>Brokerage solutions for additional coverage</li>
-        </ul>
-        <div class="pill-row">
-          <span class="pill">Temperature-controlled</span>
-          <span class="pill">Food &amp; beverage</span>
-          <span class="pill">Dedicated lanes (by request)</span>
+
+      <div class="menuPanel" id="menuPanel">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#numbers">By the Numbers</a>
+        <a href="/driver-portal.html">Driver Portal</a>
+        <a href="/apply.html">Drive With Us</a>
+        <div class="row">
+          <a class="btn" href="tel:+15598259890">Call Dispatch</a>
+          <a class="btn primary" href="/apply.html">Apply to Drive</a>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- BY THE NUMBERS -->
-  <section class="section" id="numbers">
-    <h2>Urban Freight by the Numbers</h2>
-    <p style="font-size:0.95rem;">
-      We’re a focused, growing fleet with an emphasis on dependable refrigerated service and
-      tight communication on our CA–TX and CA–MD lanes.
-    </p>
+  <main>
+    <!-- HERO -->
+    <div class="wrap hero">
+      <div class="heroGrid">
+        <div>
+          <div class="kicker"><span class="dot"></span> Refrigerated Truckload • CA–TX • CA–MD</div>
+          <h1>Reliable capacity for your temperature-controlled freight.</h1>
+          <p class="sub">
+            Urban Freight Inc is a Fresno, CA–based refrigerated carrier and freight brokerage.
+            We partner with shippers and brokers who need consistent, on-time service backed by
+            modern equipment and hands-on dispatch.
+          </p>
 
-    <div class="by-numbers">
-      <div class="metric">
-        <div class="metric-label">Fleet</div>
-        <div class="metric-value">Growing</div>
-        <div class="metric-sub">Modern tractors &amp; late-model reefers.</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Coverage</div>
-        <div class="metric-value">CA–TX &amp; CA–MD</div>
-        <div class="metric-sub">Long-haul refrigerated lanes.</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Focus</div>
-        <div class="metric-value">Reefer</div>
-        <div class="metric-sub">Temperature-sensitive product specialists.</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Approach</div>
-        <div class="metric-value">Hands-On</div>
-        <div class="metric-sub">Dispatch and ownership involved daily.</div>
+          <div class="pillRow" aria-label="Highlights">
+            <span class="pill">MC &amp; DOT registered</span>
+            <span class="pill">Insured carrier</span>
+            <span class="pill">Reefer specialists</span>
+          </div>
+
+          <div class="pillRow">
+            <a class="btn primary" href="tel:+15598259890">Ship With Urban (Call Now)</a>
+            <a class="btn" href="/apply.html">Drive With Us</a>
+            <a class="btn" href="/driver-portal.html">Driver Portal</a>
+          </div>
+
+          <p class="sub" style="font-size:13px; margin-top:14px;">
+            By providing your mobile number to Urban Freight Inc. (for example on our online application or when speaking with our staff),
+            you agree to receive SMS messages for security codes and operational alerts related to your account and loads. Message frequency varies.
+            Message &amp; data rates may apply. Text STOP to unsubscribe and HELP for help. See our
+            <a href="/privacy.html">Privacy Policy</a> and <a href="/sms-terms.html">SMS Terms &amp; Conditions</a>.
+          </p>
+        </div>
+
+        <aside class="heroCard" aria-label="Operations Snapshot">
+          <div class="top">
+            <div>
+              <strong>Operations Snapshot</strong>
+              <span>Focused lanes • Reefer freight • Tight communication</span>
+            </div>
+            <div class="pill" style="background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14); color:var(--muted);">
+              Fresno, CA
+            </div>
+          </div>
+
+          <div class="body">
+            <div class="mini">
+              <div class="icon">↔</div>
+              <div>
+                <b>Primary Lanes</b>
+                <p>CA ↔ TX • CA ↔ MD ↔ CA</p>
+              </div>
+            </div>
+            <div class="mini">
+              <div class="icon">❄</div>
+              <div>
+                <b>Equipment</b>
+                <p>Reefers • Late-model tractors</p>
+              </div>
+            </div>
+            <div class="mini">
+              <div class="icon">☑</div>
+              <div>
+                <b>Freight</b>
+                <p>Food • Beverage • Produce</p>
+              </div>
+            </div>
+            <div class="mini">
+              <div class="icon">☎</div>
+              <div>
+                <b>Support</b>
+                <p>Hands-on dispatch (ownership involved daily)</p>
+              </div>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section class="section" id="contact">
-    <h2>Contact Urban Freight</h2>
-    <div class="contact-grid">
-      <div class="contact-box">
-        <h3 style="margin-bottom:4px; color:var(--primary-light);">Shippers &amp; Brokers</h3>
-        <p>
-          For rates, capacity, or lane discussions on CA–TX or CA–MD, reach out by email:
-        </p>
-        <p style="margin-top:6px;">
-          Email:
-          <a href="mailto:urbanfreightinc21@gmail.com">urbanfreightinc21@gmail.com</a>
-        </p>
-        <p style="margin-top:6px; font-size:0.87rem; color:#6b7280;">
-          Please include lane details, temperature requirements, and appointment times if available.
-        </p>
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Excellence delivered on your CA–TX and CA–MD lanes</h2>
+            <p class="lead">
+              Urban Freight was built by people who understand trucking from the ground up.
+              We focus on refrigerated freight and direct communication with brokers and shippers.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <p style="margin:0; color:var(--muted); font-size:14px;">
+            Based in Fresno, California, we run consistent year-round refrigerated lanes between California and Texas,
+            plus long-haul round-trip operations between California and Maryland.
+            These lanes are built for shippers who need reliability and drivers who want predictable miles.
+          </p>
+        </div>
       </div>
-      <div class="contact-box">
-  <h3 style="margin-bottom:4px; color:var(--primary-light);">Drivers</h3>
-  <p>
-    Looking to run long-haul refrigerated freight on CA–TX and CA–MD lanes with a smaller
-    carrier that actually answers the phone?
-  </p>
+    </section>
 
-  <p style="margin-top:6px;">
-    <a href="apply.html" class="btn btn-primary" style="padding:8px 14px; font-size:0.9rem;">
-      Apply to Drive With Urban
-    </a>
-  </p>
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Services</h2>
+            <p class="lead">Temperature-controlled truckload solutions plus brokerage coverage when you need it.</p>
+          </div>
+        </div>
 
-  <p style="margin-top:8px;">
-    <a href="driver-portal.html" class="btn btn-outline" style="padding:8px 14px; font-size:0.9rem;">
-      Driver Portal (Upload BOL &amp; Request Pay)
-    </a>
-  </p>
+        <div class="grid3">
+          <div class="card">
+            <h3>Refrigerated Truckload (Reefer)</h3>
+            <p>Food, beverage, produce, and other temperature-sensitive freight with clear communication and on-time execution.</p>
+          </div>
+          <div class="card">
+            <h3>CA–TX and CA–MD Long-Haul Lanes</h3>
+            <p>Focused primary lanes with predictable capacity and consistent service from pickup through delivery.</p>
+          </div>
+          <div class="card">
+            <h3>Live / Drop Options (Where Available)</h3>
+            <p>Live load/unload support and drop options when facilities and lane dynamics allow.</p>
+          </div>
+        </div>
 
-  <p style="margin-top:10px;">
-    <a href="tel:+15598259890" class="btn btn-outline" style="padding:8px 14px; font-size:0.9rem;">
-      Call Dispatch (559) 825-9890
-    </a>
-  </p>
+        <div style="height:14px;"></div>
 
-  <p style="margin-top:6px; font-size:0.87rem; color:#6b7280;">
-    Experienced CDL-A drivers preferred. Application is handled securely through our online form.
-  </p>
-</div>
+        <div class="grid3">
+          <div class="card">
+            <h3>Brokerage Coverage</h3>
+            <p>Need additional trucks beyond our fleet? We can cover overflow with qualified partner capacity.</p>
+          </div>
+          <div class="card">
+            <h3>Dedicated Lanes (By Request)</h3>
+            <p>Repeat freight and committed capacity for shippers and brokers that value stability.</p>
+          </div>
+          <div class="card">
+            <h3>Temperature-Controlled Expertise</h3>
+            <p>Reefer-first mindset: appointment discipline, document readiness, and practical problem-solving.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- NUMBERS -->
+    <section id="numbers">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Urban Freight by the Numbers</h2>
+            <p class="lead">A focused, growing fleet with dependable refrigerated service and tight communication.</p>
+          </div>
+        </div>
 
-  <!-- FOOTER -->
-  <footer>
-  <div>© 2025 Urban Freight Inc. All rights reserved.</div>
-  <div style="margin-top:4px;">
-    <a href="index.html">Home</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="sms-terms.html">SMS Terms &amp; Conditions</a>
-  </div>
-  <div style="margin-top:6px; font-size:0.85rem;">
-    Email: <a href="mailto:urbanfreightinc21@gmail.com">urbanfreightinc21@gmail.com</a><br>
-    Phone: <a href="tel:+15598259890">(559) 825-9890</a>
-  </div>
-</footer>
+        <div class="stats">
+          <div class="stat">
+            <b>Fleet</b>
+            <span>Growing • Modern tractors &amp; late-model reefers</span>
+          </div>
+          <div class="stat">
+            <b>Coverage</b>
+            <span>CA–TX &amp; CA–MD long-haul refrigerated lanes</span>
+          </div>
+          <div class="stat">
+            <b>Focus</b>
+            <span>Reefer • Temperature-sensitive product specialists</span>
+          </div>
+          <div class="stat">
+            <b>Approach</b>
+            <span>Hands-on dispatch • Ownership involved daily</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- DRIVER / SHIPPER CALLOUT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="callout">
+          <div class="box">
+            <h3>Shippers &amp; Brokers</h3>
+            <p>
+              For rates, capacity, or lane discussions on CA–TX or CA–MD, reach out by email.
+              Please include lane details, temperature requirements, and appointment times if available.
+            </p>
+
+            <div class="actions">
+              <a class="btn primary" href="tel:+15598259890">Call Dispatch (559) 825-9890</a>
+              <a class="btn" href="mailto:urbanfreightinc21@gmail.com?subject=Capacity%20Request%20-%20Urban%20Freight">Email: urbanfreightinc21@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="box" style="background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border-color: rgba(255,255,255,.12);">
+            <h3>Drivers</h3>
+            <p>
+              Looking to run long-haul refrigerated freight on CA–TX and CA–MD lanes with a smaller carrier that actually answers the phone?
+            </p>
+
+            <div class="actions">
+              <a class="btn primary" href="/apply.html">Apply to Drive With Urban</a>
+              <a class="btn" href="/driver-portal.html">Driver Portal (Upload BOL &amp; Request Pay)</a>
+            </div>
+
+            <p style="margin:12px 0 0; color:var(--muted); font-size:13px;">
+              Experienced CDL-A drivers preferred. Application is handled securely through our online form.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap foot">
+        <div>
+          © <span id="year"></span> Urban Freight Inc. All rights reserved.
+          <div style="margin-top:6px;">
+            Email: <a href="mailto:urbanfreightinc21@gmail.com">urbanfreightinc21@gmail.com</a> ·
+            Phone: <a href="tel:+15598259890">(559) 825-9890</a>
+          </div>
+        </div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="/">Home</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/sms-terms.html">SMS Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const btn = document.getElementById("menuBtn");
+    const panel = document.getElementById("menuPanel");
+
+    btn.addEventListener("click", () => {
+      const open = panel.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.textContent = open ? "✕" : "☰";
+    });
+
+    // Close menu after click (mobile)
+    panel.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        panel.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.textContent = "☰";
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,736 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Driver Portal | Urban Freight Inc.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --primary: #0b2447;
-      --primary-light: #19376d;
-      --accent: #00b4d8;
-      --bg: #f3f4f6;
-      --text: #1f2933;
-      --card-bg: #ffffff;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --success: #16a34a;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* HEADER */
-    .nav {
-      background: rgba(11, 36, 71, 0.97);
-      color: #fff;
-      padding: 14px 18px 18px;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
-    }
-
-    .nav-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .nav-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: radial-gradient(circle at 10% 0, #00b4d8, #0b2447);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .brand-logo img {
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-text strong {
-      font-size: 1.02rem;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-text span {
-      font-size: 0.76rem;
-      opacity: 0.9;
-    }
-
-    .nav-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .pill {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: radial-gradient(circle at top left,
-        rgba(148, 163, 184, 0.18),
-        rgba(15, 23, 42, 0.4));
-      padding: 6px 11px;
-      font-size: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-    }
-
-    .pill-label {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.64rem;
-      opacity: 0.8;
-    }
-
-    .pill-value {
-      font-weight: 500;
-    }
-
-    /* MAIN WRAPPER */
-    main {
-      max-width: 960px;
-      margin: 18px auto 40px;
-      padding: 0 14px 24px;
-    }
-
-    /* INTRO CARD */
-    .intro-card {
-      background: radial-gradient(circle at top left, #1d3b72, #0b2447);
-      color: #fff;
-      padding: 20px 18px 22px;
-      border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
-      margin-bottom: 18px;
-    }
-
-    .intro-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.72;
-      margin-bottom: 8px;
-    }
-
-    .intro-title {
-      font-size: 1.32rem;
-      font-weight: 650;
-      margin-bottom: 6px;
-    }
-
-    .intro-copy {
-      font-size: 0.84rem;
-      opacity: 0.92;
-      margin-bottom: 10px;
-    }
-
-    .intro-small {
-      font-size: 0.76rem;
-      opacity: 0.88;
-    }
-
-    .intro-small strong {
-      font-weight: 600;
-    }
-
-    /* STEP SWITCHER */
-    .step-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin: 16px 0 8px;
-    }
-
-    .mode-switch {
-      display: flex;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 4px;
-      background: #e5e7eb;
-      margin-bottom: 16px;
-    }
-
-    .mode-btn {
-      flex: 1;
-      border-radius: 999px;
-      border: none;
-      padding: 9px 10px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-      color: #4b5563;
-    }
-
-    .mode-btn span.sub {
-      font-size: 0.66rem;
-      font-weight: 400;
-      opacity: 0.9;
-    }
-
-    .mode-btn.active {
-      background: #ffffff;
-      box-shadow: 0 6px 18px rgba(148, 163, 184, 0.65);
-      color: var(--primary);
-    }
-
-    .mode-btn.active span.sub {
-      color: var(--muted);
-    }
-
-    /* FORMS LAYOUT */
-    .forms-wrapper {
-      display: block;
-    }
-
-    .form-card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 16px 14px 18px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      margin-bottom: 14px;
-    }
-
-    .form-card.hidden {
-      display: none;
-    }
-
-    .form-header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 4px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.7rem;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: #ecfdf3;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-    }
-
-    .chip-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .chip.delivery {
-      background: #fff7ed;
-      color: #92400e;
-      border-color: #fed7aa;
-    }
-
-    .chip-dot.delivery {
-      background: #f97316;
-    }
-
-    .form-title {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .form-subtitle {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    form {
-      display: grid;
-      gap: 10px;
-    }
-
-    label {
-      font-size: 0.76rem;
-      font-weight: 500;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .hint {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-bottom: 3px;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      padding: 9px 10px;
-      font-size: 0.84rem;
-      outline: none;
-      background: #f9fafb;
-      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--accent);
-      background: #ffffff;
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35);
-    }
-
-    textarea {
-      min-height: 70px;
-      resize: vertical;
-    }
-
-    input[type="file"] {
-      padding: 6px 6px;
-      background: #f9fafb;
-    }
-
-    .submit-row {
-      margin-top: 4px;
-    }
-
-    button[type="submit"] {
-      width: 100%;
-      border-radius: 999px;
-      border: none;
-      padding: 10px 12px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      background: linear-gradient(135deg, #00b4d8, #38bdf8);
-      color: #0b1120;
-      cursor: pointer;
-      box-shadow: 0 12px 25px rgba(59, 130, 246, 0.35);
-    }
-
-    button[type="submit"]:active {
-      transform: translateY(1px);
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
-    }
-
-    .note {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* DESKTOP: show both cards side by side */
-    @media (min-width: 880px) {
-      .nav-inner {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .intro-card {
-        margin-top: 18px;
-      }
-
-      .forms-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-      }
-
-      .form-card {
-        margin-bottom: 0;
-      }
-
-      /* on desktop we always show both forms */
-      .form-card.hidden {
-        display: block;
-      }
-
-      .mode-switch {
-        max-width: 440px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header class="nav">
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="brand-logo">
-          <!-- your logo file -->
-          <img src="logo.png" alt="Urban Freight Inc. logo" />
-        </div>
-        <div class="brand-text">
-          <strong>Urban Freight Inc.</strong>
-          <span>Driver Portal</span>
-        </div>
-      </div>
-      <div class="nav-actions">
-        <a href="tel:15598259890" class="pill">
-          <span class="pill-label">Support</span>
-          <span class="pill-value">(559) 825-9890</span>
-        </a>
-        <a href="mailto:dispatch@urbanfreightinc.com" class="pill">
-          <span class="pill-label">Dispatch</span>
-          <span class="pill-value">dispatch@urbanfreightinc.com</span>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- INTRO -->
-    <section class="intro-card">
-      <div class="intro-label">Drivers · Urban Freight Inc.</div>
-      <div class="intro-title">Upload BOLs and request pay in two simple steps.</div>
-      <p class="intro-copy">
-        1) Use the <strong>Pickup</strong> form while you are loading at the shipper.<br />
-        2) Use the <strong>Delivery</strong> form after you are delivered and ready for driver pay.
-      </p>
-      <p class="intro-small">
-        <strong>Always include:</strong> Driver name, Truck #, Trailer #, Load #, and clear photos of every page.
-      </p>
-    </section>
-
-    <!-- STEP 1: CHOOSE WHAT YOU ARE DOING -->
-    <div class="step-label">Step 1 · What are you doing?</div>
-    <div class="mode-switch" id="modeSwitch">
-      <button class="mode-btn active" data-target="pickup-card" type="button">
-        Pickup / Loading
-        <span class="sub">Before leaving shipper</span>
-      </button>
-      <button class="mode-btn" data-target="delivery-card" type="button">
-        Delivery / Driver Pay
-        <span class="sub">After POD signed</span>
-      </button>
-    </div>
-
-    <!-- STEP 2: FILL OUT FORM -->
-    <div class="step-label">Step 2 · Complete the form</div>
-
-    <div class="forms-wrapper">
-      <!-- PICKUP FORM -->
-      <section class="form-card" id="pickup-card">
-        <div class="form-header-row">
-          <div class="chip">
-            <span class="chip-dot"></span>
-            Pickup · Before leaving shipper
-          </div>
-        </div>
-        <h2 class="form-title">Pickup BOL / Loading Photos</h2>
-        <p class="form-subtitle">
-          Use this while you are being loaded or right after loading. Attach pictures of the BOL, pallets, and trailer
-          before you leave the shipper.
-        </p>
-
-        <form
-          action="https://formspree.io/f/xzzoaggr"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <input type="hidden" name="Form Type" value="Pickup BOL / Loading Photos" />
-<input type="hidden" name="subject" value="Pickup BOL - {{ driver }} - Truck {{ truck }}" />
-
-          <div>
-            <label for="pickup-driver">Driver Name</label>
-           <input id="pickup-driver" name="driver" placeholder="First and last name" required />
-          </div>
-
-          <div>
-            <label for="pickup-truck">Truck #</label>
-            <input id="pickup-truck"  name="truck"  placeholder="e.g. 509"             required />
-          </div>
-
-          <div>
-            <label for="pickup-trailer">Trailer #</label>
-            <input id="pickup-trailer" name="Trailer #" placeholder="e.g. 201" required />
-          </div>
-
-          <div>
-            <label for="pickup-load">Load #</label>
-            <input id="pickup-load" name="Load #" placeholder="Broker or Urban Freight load #" required />
-          </div>
-
-          <div>
-            <label for="pickup-notes">Notes (optional)</label>
-            <textarea
-              id="pickup-notes"
-              name="Notes"
-              placeholder="Any special loading notes, seal info, or issues."
-            ></textarea>
-          </div>
-
-         <div>
-  <label for="pickup-files">Upload BOL + loading photos</label>
-  <p class="hint">Take one photo per button press. Use “Add another photo” for extra pages or pallets.</p>
-
-  <div class="file-group" id="pickup-files-group">
-    <input
-  id="pickup-files"
-  name="Pickup Files 1"
-  type="file"
-  accept="image/*,.pdf"
-  multiple
-/>
-
-
-  </div>
-
-  <button
-    type="button"
-    class="add-photo-btn"
-    data-target="pickup-files-group"
-  >
-    + Add another photo
-  </button>
-
-  <p class="note">
-    All photos you take here will be sent together with this Pickup form.
-  </p>
-</div>
-
-
-          <div class="submit-row">
-            <button type="submit">Submit Pickup BOL</button>
-          </div>
-        </form>
-      </section>
-
-      <!-- DELIVERY FORM -->
-      <section class="form-card hidden" id="delivery-card">
-        <div class="form-header-row">
-          <div class="chip delivery">
-            <span class="chip-dot delivery"></span>
-            Delivery · After POD signed + ready for pay
-          </div>
-        </div>
-        <h2 class="form-title">Delivery POD / BOL + Driver Pay</h2>
-        <p class="form-subtitle">
-          Use this after delivery when the POD/BOL is signed and you are ready to request pay, settlement review, or an
-          advance.
-        </p>
-
-        <form
-          action="https://formspree.io/f/xeonlkkk"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <input type="hidden" name="Form Type" value="Delivery POD / Driver Pay" />
-<input type="hidden" name="subject" value="Delivery POD / Pay - {{ driver }} - Truck {{ truck }}" />
-
-
-          <div>
-            <label for="del-driver">Driver Name</label>
-            <input id="del-driver" name="driver" placeholder="First and last name" required />
-          </div>
-
-          <div>
-            <label for="del-truck">Truck #</label>
-            <input id="del-truck"  name="truck"  placeholder="e.g. 509"             required />
-          </div>
-
-          <div>
-            <label for="del-trailer">Trailer #</label>
-            <input id="del-trailer" name="Trailer #" placeholder="e.g. 201" required />
-          </div>
-
-          <div>
-            <label for="del-load">Load #</label>
-            <input id="del-load" name="Load #" placeholder="Broker or Urban Freight load #" required />
-          </div>
-
-          <div>
-            <label for="del-city">Delivery city / receiver</label>
-            <input
-              id="del-city"
-              name="Delivery city / receiver"
-              placeholder="e.g. Walmart – Phoenix, AZ"
-              required
-            />
-          </div>
-
-          <div>
-            <label for="del-request-type">What are you requesting?</label>
-            <select id="del-request-type" name="Request Type" required>
-              <option value="">Select one…</option>
-              <option value="Driver pay – full trip">Driver pay – full trip</option>
-              <option value="Driver pay – partial / layover / detention">
-                Driver pay – partial / layover / detention
-              </option>
-              <option value="Advance request">Advance request</option>
-              <option value="Settlement question / correction">Settlement question / correction</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="del-amount">Amount requested (if any)</label>
-            <input
-              id="del-amount"
-              name="Amount requested"
-              placeholder="e.g. $250 advance or Trip pay for CA–TX–CA"
-            />
-          </div>
-
-          <div>
-            <label for="del-notes">Notes to payroll / dispatch</label>
-            <textarea
-              id="del-notes"
-              name="Notes"
-              placeholder="Anything we should know about this trip, accessorials, layover, detention, etc."
-            ></textarea>
-          </div>
-
-         <div>
-  <label for="del-files">Upload signed POD / BOL + receipts</label>
-  <p class="hint">Take one photo per button press. Use “Add another photo” for extra pages or receipts.</p>
-
-  <div class="file-group" id="delivery-files-group">
-    <input
-  id="del-files"
-  name="Delivery Files 1"
-  type="file"
-  accept="image/*,.pdf"
-  multiple
-/>
-
-
-  </div>
-
-  <button
-    type="button"
-    class="add-photo-btn"
-    data-target="delivery-files-group"
-  >
-    + Add another photo
-  </button>
-
-  <p class="note">
-    All photos you take here will be sent together with this Delivery form.
-  </p>
-</div>
-
-
-          <div class="submit-row">
-            <button type="submit">Submit Delivery + Pay Request</button>
-          </div>
-        </form>
-      </section>
-    </div>
-  </main>
-
-  <script>
-  // Toggle forms on mobile: show only the selected one.
-  (function () {
-    var buttons = document.querySelectorAll("#modeSwitch .mode-btn");
-    var pickupCard = document.getElementById("pickup-card");
-    var deliveryCard = document.getElementById("delivery-card");
-
-    function setMode(targetId) {
-      buttons.forEach(function (btn) {
-        btn.classList.toggle("active", btn.dataset.target === targetId);
-      });
-
-      if (window.innerWidth < 880) {
-        pickupCard.classList.toggle("hidden", targetId !== "pickup-card");
-        deliveryCard.classList.toggle("hidden", targetId !== "delivery-card");
-      }
-    }
-
-    buttons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        setMode(btn.dataset.target);
-        if (window.innerWidth < 880) {
-          document
-            .querySelector(".step-label:nth-of-type(2)")
-            .scrollIntoView({ behavior: "smooth" });
-        }
-      });
-    });
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth >= 880) {
-        pickupCard.classList.remove("hidden");
-        deliveryCard.classList.remove("hidden");
-      } else {
-        var activeBtn = document.querySelector("#modeSwitch .mode-btn.active");
-        if (activeBtn) setMode(activeBtn.dataset.target);
-      }
-    });
-  })();
-
-  // Allow multiple camera photos by adding more file inputs.
-  (function () {
-    function setupAddPhoto(groupId, baseName) {
-      var group = document.getElementById(groupId);
-      if (!group) return;
-
-      var button = document.querySelector(
-        '.add-photo-btn[data-target="' + groupId + '"]'
-      );
-      if (!button) return;
-
-      var index = 2;
-
-      button.addEventListener("click", function () {
-        var firstInput = group.querySelector('input[type="file"]');
-        if (!firstInput) return;
-
-        var clone = firstInput.cloneNode();
-        clone.id = "";              // only first input keeps the id
-        clone.name = baseName + " " + index;
-        clone.value = "";
-        group.appendChild(clone);
-        index++;
-      });
-    }
-
-    setupAddPhoto("pickup-files-group", "Pickup Files");
-    setupAddPhoto("delivery-files-group", "Delivery Files");
-  })();
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Freight Driver Portal</title>
+
+<!-- Redirect after 5 seconds -->
+<meta http-equiv="refresh" content="5; url=https://app.vektortms.com/login">
+
+<style>
+body{
+font-family: Arial, Helvetica, sans-serif;
+background:#0f172a;
+color:white;
+margin:0;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+text-align:center;
+}
+
+.container{
+max-width:600px;
+padding:40px;
+background:#1e293b;
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+h1{
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+p{
+font-size:16px;
+line-height:1.5;
+}
+
+.button{
+display:inline-block;
+margin-top:20px;
+padding:14px 28px;
+background:#38bdf8;
+color:black;
+text-decoration:none;
+font-weight:bold;
+border-radius:8px;
+}
+
+.small{
+margin-top:15px;
+font-size:13px;
+color:#94a3b8;
+}
+</style>
+
+<script>
+setTimeout(function(){
+window.location.href="https://app.vektortms.com/login";
+},5000);
 </script>
 
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Driver Portal Update</h1>
+
+<p>
+Urban Freight has moved all driver dispatching, load details, and communication to the
+<strong>Vektor TMS App</strong>.
+</p>
+
+<p>
+You will now access your loads, rate confirmations, and updates directly through Vektor.
+</p>
+
+<a class="button" href="https://app.vektortms.com/login">
+Open Vektor TMS
+</a>
+
+<p class="small">
+You will be automatically redirected in a few seconds.
+</p>
+
+</div>
 
 </body>
 </html>

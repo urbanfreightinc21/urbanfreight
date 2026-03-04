@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Urban Freight Inc | Refrigerated Trucking & Freight Brokerage</title>
-  <meta name="description" content="Urban Freight Inc is a Fresno, CA–based refrigerated carrier and freight brokerage specializing in temperature-controlled truckload freight on CA–TX and CA–MD lanes." />
+  <title>Urban Freight Inc | Reefer & Dry Van Carrier</title>
+  <meta name="description" content="Urban Freight Inc is an ownership-involved trucking carrier operating late-model reefers, dry vans, and tractors. Live tracking on all trucks. Primary lanes: CA–TX–CA, CA–GA–CA, CA–NJ–CA, CA–FL–CA." />
 
   <style>
     :root{
-      /* Urban Freight palette (blue replaces “yellow”) */
-      --bg: #0b1220;
+      /* Urban Freight palette */
+      --bg:#0b1220;
       --bg2:#0f172a;
       --panel:#111b31;
+
       --text:#e7eefc;
       --muted:#a9b6d3;
       --line: rgba(255,255,255,.12);
 
-      --brand:#2563EB;    /* primary blue */
-      --brand2:#1E3A8A;   /* deeper blue */
-      --chip:#0b2a78;
-
+      --brand:#2563EB;     /* primary blue */
+      --brand2:#1E3A8A;    /* deep blue */
       --white:#ffffff;
+
       --shadow: 0 18px 55px rgba(0,0,0,.45);
       --radius: 18px;
-
       --max: 1160px;
     }
 
@@ -33,9 +32,10 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       color: var(--text);
-      background: radial-gradient(1200px 700px at 20% -10%, rgba(37,99,235,.35), transparent 60%),
-                  radial-gradient(900px 500px at 90% 10%, rgba(30,58,138,.35), transparent 55%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(37,99,235,.35), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(30,58,138,.35), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       line-height:1.45;
     }
 
@@ -105,6 +105,7 @@
       align-items:center;
       gap: 10px;
     }
+
     .btn{
       display:inline-flex;
       align-items:center;
@@ -116,9 +117,9 @@
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
       color: var(--text);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
       white-space:nowrap;
     }
     .btn:hover{
@@ -136,7 +137,19 @@
     .btn.small{
       padding: 9px 12px;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 900;
+    }
+
+    /* Make Driver Portal noticeably outlined */
+    .btn.portal{
+      background: rgba(37,99,235,.10);
+      border: 2px solid rgba(37,99,235,.70);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.18);
+    }
+    .btn.portal:hover{
+      background: rgba(37,99,235,.16);
+      border-color: rgba(37,99,235,.95);
+      box-shadow: 0 0 0 6px rgba(37,99,235,.18);
     }
 
     /* Mobile nav */
@@ -173,9 +186,7 @@
     }
 
     /* Hero */
-    .hero{
-      padding: 54px 0 22px;
-    }
+    .hero{ padding: 54px 0 22px; }
     .heroGrid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -208,7 +219,7 @@
     .sub{
       color: var(--muted);
       font-size: 16px;
-      max-width: 58ch;
+      max-width: 62ch;
       margin: 0 0 18px;
     }
     .pillRow{
@@ -291,7 +302,7 @@
     .lead{
       margin: 0;
       color: var(--muted);
-      max-width: 70ch;
+      max-width: 78ch;
       font-size: 14px;
     }
 
@@ -315,28 +326,6 @@
       margin:0;
       color: var(--muted);
       font-size: 14px;
-    }
-
-    /* Numbers */
-    .stats{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-    .stat{
-      padding: 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.12);
-    }
-    .stat b{
-      display:block;
-      font-size: 15px;
-      margin-bottom: 2px;
-    }
-    .stat span{
-      color: var(--muted);
-      font-size: 13px;
     }
 
     /* Callout */
@@ -383,7 +372,6 @@
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
       .grid3{ grid-template-columns: 1fr; }
-      .stats{ grid-template-columns: 1fr 1fr; }
       .callout{ grid-template-columns: 1fr; }
     }
     @media (max-width: 860px){
@@ -395,7 +383,7 @@
     @media (max-width: 520px){
       h1{ font-size: 34px; }
       .btn{ width:100%; }
-      .ctaRow{ display:none; } /* keep header clean; mobile CTAs go in menu */
+      .ctaRow{ display:none; } /* mobile CTAs go in menu */
     }
   </style>
 </head>
@@ -408,35 +396,35 @@
           <img src="/logo.png" alt="Urban Freight Inc logo" />
           <div>
             <strong>Urban Freight Inc</strong>
-            <span>Refrigerated Trucking • Freight Brokerage</span>
+            <span>Ownership-Involved Reefer &amp; Dry Van Carrier</span>
           </div>
         </a>
 
         <nav aria-label="Primary">
           <a href="#about">About</a>
           <a href="#services">Services</a>
-          <a href="#numbers">By the Numbers</a>
-          <a href="/driver-portal.html">Driver Portal</a>
+          <a href="#lanes">Primary Lanes</a>
           <a href="/apply.html">Drive With Us</a>
+          <a href="/driver-portal.html" class="btn portal small" style="padding:8px 12px;">Driver Portal</a>
         </nav>
 
         <div class="ctaRow">
           <a class="btn small" href="tel:+15598259890">Call Dispatch</a>
+          <a class="btn portal small" href="/driver-portal.html">Driver Portal</a>
           <a class="btn primary small" href="/apply.html">Apply to Drive</a>
         </div>
 
-        <button class="menuBtn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">
-          ☰
-        </button>
+        <button class="menuBtn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menuPanel">☰</button>
       </div>
 
       <div class="menuPanel" id="menuPanel">
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#numbers">By the Numbers</a>
-        <a href="/driver-portal.html">Driver Portal</a>
+        <a href="#lanes">Primary Lanes</a>
         <a href="/apply.html">Drive With Us</a>
+        <a href="/driver-portal.html">Driver Portal</a>
         <div class="row">
+          <a class="btn portal" href="/driver-portal.html">Driver Portal</a>
           <a class="btn" href="tel:+15598259890">Call Dispatch</a>
           <a class="btn primary" href="/apply.html">Apply to Drive</a>
         </div>
@@ -449,24 +437,27 @@
     <div class="wrap hero">
       <div class="heroGrid">
         <div>
-          <div class="kicker"><span class="dot"></span> Refrigerated Truckload • CA–TX • CA–MD</div>
-          <h1>Reliable capacity for your temperature-controlled freight.</h1>
+          <div class="kicker"><span class="dot"></span> Reefer &amp; Dry Van • Live Tracking • Ownership Involved</div>
+
+          <h1>Reliable carrier service with live tracking on every truck.</h1>
+
           <p class="sub">
-            Urban Freight Inc is a Fresno, CA–based refrigerated carrier and freight brokerage.
-            We partner with shippers and brokers who need consistent, on-time service backed by
-            modern equipment and hands-on dispatch.
+            Urban Freight Inc is an <strong>ownership-involved trucking carrier</strong> operating
+            <strong>late-model reefers, dry vans, and tractors</strong>.
+            We can haul nationwide, with primary long-haul lanes centered around
+            CA–TX–CA, CA–GA–CA, CA–NJ–CA, and CA–FL–CA.
           </p>
 
           <div class="pillRow" aria-label="Highlights">
-            <span class="pill">MC &amp; DOT registered</span>
-            <span class="pill">Insured carrier</span>
-            <span class="pill">Reefer specialists</span>
+            <span class="pill">Reefer + Dry Van</span>
+            <span class="pill">Late-model equipment</span>
+            <span class="pill">Live tracking on all trucks</span>
           </div>
 
           <div class="pillRow">
-            <a class="btn primary" href="tel:+15598259890">Ship With Urban (Call Now)</a>
+            <a class="btn primary" href="tel:+15598259890">Ship With Urban (Call Dispatch)</a>
+            <a class="btn portal" href="/driver-portal.html">Driver Portal</a>
             <a class="btn" href="/apply.html">Drive With Us</a>
-            <a class="btn" href="/driver-portal.html">Driver Portal</a>
           </div>
 
           <p class="sub" style="font-size:13px; margin-top:14px;">
@@ -481,7 +472,7 @@
           <div class="top">
             <div>
               <strong>Operations Snapshot</strong>
-              <span>Focused lanes • Reefer freight • Tight communication</span>
+              <span>Carrier-first mindset • Tight communication • Trackable freight</span>
             </div>
             <div class="pill" style="background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14); color:var(--muted);">
               Fresno, CA
@@ -490,31 +481,34 @@
 
           <div class="body">
             <div class="mini">
-              <div class="icon">↔</div>
+              <div class="icon">🧊</div>
               <div>
-                <b>Primary Lanes</b>
-                <p>CA ↔ TX • CA ↔ MD ↔ CA</p>
+                <b>Reefer Freight</b>
+                <p>Temperature-sensitive freight handled with discipline and clear updates.</p>
               </div>
             </div>
+
             <div class="mini">
-              <div class="icon">❄</div>
+              <div class="icon">🚚</div>
+              <div>
+                <b>Dry Van Freight</b>
+                <p>General freight coverage with consistent service.</p>
+              </div>
+            </div>
+
+            <div class="mini">
+              <div class="icon">🧰</div>
               <div>
                 <b>Equipment</b>
-                <p>Reefers • Late-model tractors</p>
+                <p>Late-model Reefers, Dry Vans, &amp; Tractors</p>
               </div>
             </div>
+
             <div class="mini">
-              <div class="icon">☑</div>
+              <div class="icon">📍</div>
               <div>
-                <b>Freight</b>
-                <p>Food • Beverage • Produce</p>
-              </div>
-            </div>
-            <div class="mini">
-              <div class="icon">☎</div>
-              <div>
-                <b>Support</b>
-                <p>Hands-on dispatch (ownership involved daily)</p>
+                <b>Live Tracking</b>
+                <p>Live location tracking available on all trucks for every load.</p>
               </div>
             </div>
           </div>
@@ -527,19 +521,19 @@
       <div class="wrap">
         <div class="sectionHead">
           <div>
-            <h2>Excellence delivered on your CA–TX and CA–MD lanes</h2>
+            <h2>Ownership involved — every day</h2>
             <p class="lead">
-              Urban Freight was built by people who understand trucking from the ground up.
-              We focus on refrigerated freight and direct communication with brokers and shippers.
+              We’re a carrier built around accountability and direct communication.
+              You get timely updates, live tracking, and a team that treats service like it matters.
             </p>
           </div>
         </div>
 
         <div class="card">
           <p style="margin:0; color:var(--muted); font-size:14px;">
-            Based in Fresno, California, we run consistent year-round refrigerated lanes between California and Texas,
-            plus long-haul round-trip operations between California and Maryland.
-            These lanes are built for shippers who need reliability and drivers who want predictable miles.
+            Urban Freight Inc is based in Fresno, California. We can haul nationwide, with primary long-haul lanes focused on
+            CA–TX–CA, CA–GA–CA, CA–NJ–CA, and CA–FL–CA. We operate late-model reefers and dry vans and keep communication tight
+            from pickup through delivery.
           </p>
         </div>
       </div>
@@ -550,85 +544,74 @@
       <div class="wrap">
         <div class="sectionHead">
           <div>
-            <h2>Services</h2>
-            <p class="lead">Temperature-controlled truckload solutions plus brokerage coverage when you need it.</p>
+            <h2>What we haul</h2>
+            <p class="lead">Reefer and dry van transportation with live tracking on every truck.</p>
           </div>
         </div>
 
         <div class="grid3">
           <div class="card">
-            <h3>Refrigerated Truckload (Reefer)</h3>
-            <p>Food, beverage, produce, and other temperature-sensitive freight with clear communication and on-time execution.</p>
+            <h3>Reefer (Temperature-Controlled)</h3>
+            <p>Food, beverage, produce, and temperature-sensitive freight. Clear updates and appointment discipline.</p>
           </div>
           <div class="card">
-            <h3>CA–TX and CA–MD Long-Haul Lanes</h3>
-            <p>Focused primary lanes with predictable capacity and consistent service from pickup through delivery.</p>
+            <h3>Dry Van</h3>
+            <p>General freight moves with consistent service and a carrier-first operational approach.</p>
           </div>
           <div class="card">
-            <h3>Live / Drop Options (Where Available)</h3>
-            <p>Live load/unload support and drop options when facilities and lane dynamics allow.</p>
+            <h3>Live Tracking Included</h3>
+            <p>Live location tracking available on all trucks for every load—no guessing, no chasing updates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIMARY LANES -->
+    <section id="lanes">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Primary lanes</h2>
+            <p class="lead">We can haul nationwide, but these are our most common long-haul round-trip lanes.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>CA → TX → CA</h3>
+            <p>Consistent capacity and communication on CA–TX round trips.</p>
+          </div>
+          <div class="card">
+            <h3>CA → GA → CA</h3>
+            <p>Long-haul service built for schedule reliability.</p>
+          </div>
+          <div class="card">
+            <h3>CA → NJ/FL → CA</h3>
+            <p>Nationwide long-haul with disciplined updates and live tracking.</p>
           </div>
         </div>
 
         <div style="height:14px;"></div>
 
-        <div class="grid3">
-          <div class="card">
-            <h3>Brokerage Coverage</h3>
-            <p>Need additional trucks beyond our fleet? We can cover overflow with qualified partner capacity.</p>
-          </div>
-          <div class="card">
-            <h3>Dedicated Lanes (By Request)</h3>
-            <p>Repeat freight and committed capacity for shippers and brokers that value stability.</p>
-          </div>
-          <div class="card">
-            <h3>Temperature-Controlled Expertise</h3>
-            <p>Reefer-first mindset: appointment discipline, document readiness, and practical problem-solving.</p>
-          </div>
+        <div class="card">
+          <h3 style="margin:0 0 8px;">Other lanes</h3>
+          <p style="margin:0; color:var(--muted); font-size:14px;">
+            Have a different lane? We can run wherever you need—reach out with lane details, commodity, equipment type (reefer/dry),
+            appointment times, and any special requirements.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- NUMBERS -->
-    <section id="numbers">
-      <div class="wrap">
-        <div class="sectionHead">
-          <div>
-            <h2>Urban Freight by the Numbers</h2>
-            <p class="lead">A focused, growing fleet with dependable refrigerated service and tight communication.</p>
-          </div>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <b>Fleet</b>
-            <span>Growing • Modern tractors &amp; late-model reefers</span>
-          </div>
-          <div class="stat">
-            <b>Coverage</b>
-            <span>CA–TX &amp; CA–MD long-haul refrigerated lanes</span>
-          </div>
-          <div class="stat">
-            <b>Focus</b>
-            <span>Reefer • Temperature-sensitive product specialists</span>
-          </div>
-          <div class="stat">
-            <b>Approach</b>
-            <span>Hands-on dispatch • Ownership involved daily</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DRIVER / SHIPPER CALLOUT -->
+    <!-- CALL TO ACTION -->
     <section id="contact">
       <div class="wrap">
         <div class="callout">
           <div class="box">
             <h3>Shippers &amp; Brokers</h3>
             <p>
-              For rates, capacity, or lane discussions on CA–TX or CA–MD, reach out by email.
-              Please include lane details, temperature requirements, and appointment times if available.
+              For rates and capacity, call dispatch or email lane details.
+              Live tracking is available on every truck for every load.
             </p>
 
             <div class="actions">
@@ -640,16 +623,17 @@
           <div class="box" style="background: linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.03)); border-color: rgba(255,255,255,.12);">
             <h3>Drivers</h3>
             <p>
-              Looking to run long-haul refrigerated freight on CA–TX and CA–MD lanes with a smaller carrier that actually answers the phone?
+              Run reefer and dry van freight with a carrier where ownership stays involved.
+              Use the Driver Portal for documents and updates.
             </p>
 
             <div class="actions">
+              <a class="btn portal" href="/driver-portal.html">Driver Portal</a>
               <a class="btn primary" href="/apply.html">Apply to Drive With Urban</a>
-              <a class="btn" href="/driver-portal.html">Driver Portal (Upload BOL &amp; Request Pay)</a>
             </div>
 
             <p style="margin:12px 0 0; color:var(--muted); font-size:13px;">
-              Experienced CDL-A drivers preferred. Application is handled securely through our online form.
+              Experienced CDL-A drivers preferred. Application is handled through our online form.
             </p>
           </div>
         </div>

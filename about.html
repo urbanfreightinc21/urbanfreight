@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>About Us | Urban Freight Inc.</title><meta name="description" content="Urban Freight Inc. is an ownership-involved reefer and dry van carrier based out of Fresno, CA."><link rel="stylesheet" href="style.css"></head><body><div class="site"><nav class="nav"><div class="nav-inner"><a class="brand" href="index.html"><img src="logo.png" alt="Urban Freight Inc. logo"><div><div class="brand-title">URBAN FREIGHT INC.</div><div class="brand-sub">OWNERSHIP-INVOLVED CARRIER</div></div></a><div class="nav-links"><a href="index.html" class="">Home</a><a href="index.html#services">Services</a><a href="index.html#equipment">Equipment</a><a href="index.html#lanes">Lanes</a><a href="apply.html" class="">Drive With Us</a><a href="about.html" class="active">About Us</a><a href="contact.html" class="">Contact Us</a><a href="driver-portal.html" class="nav-outline ">Driver Portal</a><a href="apply.html" class="nav-primary">Drive With Us</a></div><div class="mobile-menu">☰</div></div></nav><div class="mobile-panel" id="mobilePanel">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#equipment">Equipment</a>
+  <a href="index.html#lanes">Lanes</a>
+  <a href="apply.html">Drive With Us</a>
+  <a href="about.html">About Us</a>
+  <a href="contact.html">Contact Us</a>
+  <a class="outline-mobile" href="driver-portal.html">Driver Portal</a>
+  <a class="primary-mobile" href="apply.html">Apply to Drive</a>
+</div><main class="page-main"><section class="about-page"><div class="about-head"><h1>About Us</h1><p>Urban Freight Inc. is an ownership-involved carrier built on communication, transparency, and trust. We move temperature-controlled and dry van freight across the U.S. with a modern fleet, real-time visibility, and a team that truly cares.</p></div><div class="stats"><div class="stat"><strong>2022+</strong><span>ThermoKing Reefers</span></div><div class="stat"><strong>98%+</strong><span>On-Time Delivery</span></div><div class="stat"><strong>24/7</strong><span>Live GPS Tracking</span></div><div class="stat"><strong>100%</strong><span>Commitment to Customers</span></div></div></section></main></div><script>
+function toggleMobileMenu(){
+  var panel = document.getElementById('mobilePanel');
+  if(panel){ panel.classList.toggle('open'); }
+}
+document.addEventListener('DOMContentLoaded', function(){
+  var menu = document.querySelector('.mobile-menu');
+  var panel = document.getElementById('mobilePanel');
+  if(menu){
+    menu.setAttribute('role','button');
+    menu.setAttribute('aria-label','Open menu');
+    menu.addEventListener('click', toggleMobileMenu);
+  }
+  if(panel){
+    panel.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){ panel.classList.remove('open'); });
+    });
+  }
+});
+</script></body></html>

@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Drive With Us | Urban Freight Inc.</title><meta name="description" content="Urban Freight Inc. is an ownership-involved reefer and dry van carrier based out of Fresno, CA."><link rel="stylesheet" href="style.css"></head><body><div class="site"><nav class="nav"><div class="nav-inner"><a class="brand" href="index.html"><img src="logo.png" alt="Urban Freight Inc. logo"><div><div class="brand-title">URBAN FREIGHT INC.</div><div class="brand-sub">OWNERSHIP-INVOLVED CARRIER</div></div></a><div class="nav-links"><a href="index.html" class="">Home</a><a href="index.html#services">Services</a><a href="index.html#equipment">Equipment</a><a href="index.html#lanes">Lanes</a><a href="apply.html" class="active">Drive With Us</a><a href="about.html" class="">About Us</a><a href="contact.html" class="">Contact Us</a><a href="driver-portal.html" class="nav-outline ">Driver Portal</a><a href="apply.html" class="nav-primary">Drive With Us</a></div><div class="mobile-menu">☰</div></div></nav><div class="mobile-panel" id="mobilePanel">
+  <a href="index.html">Home</a>
+  <a href="index.html#services">Services</a>
+  <a href="index.html#equipment">Equipment</a>
+  <a href="index.html#lanes">Lanes</a>
+  <a href="apply.html">Drive With Us</a>
+  <a href="about.html">About Us</a>
+  <a href="contact.html">Contact Us</a>
+  <a class="outline-mobile" href="driver-portal.html">Driver Portal</a>
+  <a class="primary-mobile" href="apply.html">Apply to Drive</a>
+</div><main class="page-main"><section class="split-page" style="--subimage:url('driver-application.png')"><div class="split-content"><div class="eyebrow">DRIVE WITH US</div><h1>Drive With Us</h1><p>We’re looking for professional drivers who take pride in their work and value a company that values them.</p><div class="checklist"><div class="checkline"><span class="check">✓</span>Competitive Pay</div><div class="checkline"><span class="check">✓</span>Consistent Miles</div><div class="checkline"><span class="check">✓</span>Modern Equipment</div><div class="checkline"><span class="check">✓</span>Home Time Considered</div><div class="checkline"><span class="check">✓</span>24/7 Driver Support</div></div><a class="btn primary" href="https://intelliapp.driverapponline.com/m/3619813?uri_b=mob_ia_3619813_1637355353" target="_blank">Apply Today</a><div class="subbox">By applying and providing your mobile number in IntelliApp, you agree to receive SMS messages from Urban Freight Inc. regarding onboarding, safety verification, appointment times, and load communications. Message frequency varies. Message &amp; data rates may apply. Text STOP to unsubscribe and HELP for help.</div></div></section></main></div><script>
+function toggleMobileMenu(){
+  var panel = document.getElementById('mobilePanel');
+  if(panel){ panel.classList.toggle('open'); }
+}
+document.addEventListener('DOMContentLoaded', function(){
+  var menu = document.querySelector('.mobile-menu');
+  var panel = document.getElementById('mobilePanel');
+  if(menu){
+    menu.setAttribute('role','button');
+    menu.setAttribute('aria-label','Open menu');
+    menu.addEventListener('click', toggleMobileMenu);
+  }
+  if(panel){
+    panel.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){ panel.classList.remove('open'); });
+    });
+  }
+});
+</script></body></html>

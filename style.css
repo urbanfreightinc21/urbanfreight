@@ -275,3 +275,194 @@ url('assets/hero-network.jpg') center/cover no-repeat;animation:heroDrift 18s ea
 .vector-inner{width:100%;max-width:1320px;margin:auto;padding:95px 28px 70px;position:relative;z-index:2}.vector-inner .hero-copy{max-width:610px}.vector-hero h1{font-size:clamp(62px,6.6vw,102px);line-height:.9;margin:20px 0 24px}.vector-hero h1 span{color:#078cff;-webkit-text-stroke:0}.vector-hero p{font-size:17px;line-height:1.72;color:#c0ceda;max-width:575px}.vector-hero .broker-strip{margin-top:52px;max-width:650px;border-top:1px solid rgba(255,255,255,.14);display:grid;grid-template-columns:repeat(4,1fr)}.vector-hero .broker-strip>div{padding:18px 14px 0 0}.vector-hero .broker-strip strong{display:block;font:800 15px Manrope}.vector-hero .broker-strip span{display:block;margin-top:5px;font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#8094a8}
 @media(max-width:950px){.vector-hero{min-height:720px}.hero-vector{transform:translateX(11%) scale(.92);transform-origin:center}.vector-inner{padding-top:80px}.vector-inner .hero-copy{max-width:560px}.truck-art{opacity:.72}}
 @media(max-width:560px){.vector-hero{min-height:700px}.vector-inner{padding:60px 18px 42px}.vector-hero h1{font-size:48px}.vector-hero p{font-size:14px;max-width:360px}.vector-hero .broker-strip{grid-template-columns:1fr 1fr;margin-top:34px}.hero-vector{inset:70px -240px 0 auto;width:980px;height:520px;opacity:.82;transform:none}.vector-grid{inset:70px 0 0}.truck-art{transform:translate(1020px,430px) scale(.82);opacity:.62}.us-shape{opacity:.78}.network-lines{opacity:.88}.state-line{opacity:.18}}
+
+
+/* ===== REAL U.S. MAP + REAL TRUCK HERO ===== */
+.realmap-hero{
+  position:relative;
+  min-height:720px;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 72% 35%,rgba(0,137,255,.16),transparent 30%),
+    linear-gradient(180deg,#02070d 0%,#040a12 100%);
+  padding-top:78px;
+}
+.realmap-grid{
+  position:absolute;
+  inset:78px 0 0;
+  z-index:-5;
+  background-image:
+    linear-gradient(rgba(43,159,236,.038) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(43,159,236,.038) 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.55) 72%,transparent 100%);
+  animation:realGrid 22s linear infinite;
+}
+@keyframes realGrid{to{background-position:58px 58px}}
+.hero-visual-stack{
+  position:absolute;
+  inset:78px 0 0;
+  z-index:-2;
+  pointer-events:none;
+}
+.map-stage{
+  position:absolute;
+  right:4%;
+  top:7%;
+  width:min(62vw,960px);
+  aspect-ratio:959/593;
+  opacity:.88;
+  filter:drop-shadow(0 0 28px rgba(22,168,255,.22));
+}
+.real-us-map{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(47%)
+    sepia(96%)
+    saturate(2385%)
+    hue-rotate(173deg)
+    brightness(102%)
+    contrast(101%)
+    drop-shadow(0 0 7px rgba(22,168,255,.62));
+  opacity:.42;
+}
+.route-overlay{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+.route-lines path{
+  fill:none;
+  stroke:#27b9ff;
+  stroke-width:2.4;
+  stroke-linecap:round;
+  stroke-dasharray:8 13;
+  opacity:.88;
+  animation:routeFlow 7s linear infinite;
+}
+.route-lines path:nth-child(2){animation-duration:8.5s}
+.route-lines path:nth-child(3){animation-duration:9.5s}
+.route-lines path:nth-child(4){animation-duration:7.8s}
+.route-lines path:nth-child(5){animation-duration:8.8s}
+.route-lines path:nth-child(6){animation-duration:10s}
+.route-lines path:nth-child(7){animation-duration:9s}
+@keyframes routeFlow{to{stroke-dashoffset:-84}}
+.route-nodes circle{
+  fill:#c8f3ff;
+  stroke:#20b6ff;
+  stroke-width:2;
+  filter:drop-shadow(0 0 7px #20b6ff);
+  animation:nodePulse 2.5s ease-in-out infinite;
+}
+.route-nodes circle:nth-child(2n){animation-delay:.8s}
+.route-nodes circle:nth-child(3n){animation-delay:1.4s}
+@keyframes nodePulse{50%{opacity:.45;transform:scale(.82);transform-origin:center}}
+.truck-photo-wrap{
+  position:absolute;
+  right:-1%;
+  bottom:0;
+  width:min(44vw,760px);
+  height:59%;
+  overflow:hidden;
+  opacity:.82;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,black 22%,black 100%),linear-gradient(0deg,black 0%,black 78%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent 0%,black 22%,black 100%);
+}
+.hero-real-truck{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:54% center;
+  filter:saturate(.55) brightness(.66) contrast(1.18);
+  transform:scale(1.01);
+}
+.truck-photo-wrap:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,110,220,.09),rgba(0,23,48,.16)),
+    linear-gradient(90deg,rgba(3,8,14,.22),transparent 38%);
+  mix-blend-mode:screen;
+}
+.hero-blue-glow{
+  position:absolute;
+  right:7%;
+  bottom:8%;
+  width:42%;
+  height:25%;
+  background:radial-gradient(ellipse,rgba(18,154,255,.18),transparent 68%);
+  filter:blur(35px);
+}
+.realmap-hero .cinematic-inner{
+  position:relative;
+  z-index:4;
+  max-width:1280px;
+  margin:auto;
+  padding:102px 28px 58px;
+}
+.realmap-hero .hero-copy{
+  max-width:610px;
+  padding:22px 26px 18px 0;
+}
+.realmap-hero .hero-copy:after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:78px;
+  width:49%;
+  height:78%;
+  background:linear-gradient(90deg,rgba(2,7,13,.82),rgba(2,7,13,.42),transparent);
+  z-index:-1;
+  filter:blur(2px);
+}
+.realmap-hero h1{
+  font-size:clamp(60px,6.4vw,98px);
+  line-height:.91;
+  margin:18px 0 23px;
+}
+.realmap-hero h1 span{color:#078cff;-webkit-text-stroke:0}
+.realmap-hero p{
+  max-width:560px;
+  color:#c3d0db;
+  font-size:16px;
+  line-height:1.72;
+}
+.realmap-hero .broker-strip{
+  margin-top:45px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  max-width:650px;
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.realmap-hero .broker-strip>div{padding:17px 15px 0 0}
+.realmap-hero .broker-strip strong{display:block;font:800 14px Manrope}
+.realmap-hero .broker-strip span{display:block;margin-top:4px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#8192a2}
+
+@media(max-width:1000px){
+  .realmap-hero{min-height:760px}
+  .map-stage{right:-8%;top:7%;width:82vw;opacity:.63}
+  .truck-photo-wrap{width:58vw;height:44%;right:-9%}
+  .realmap-hero .hero-copy:after{width:68%}
+}
+@media(max-width:640px){
+  .realmap-hero{min-height:760px}
+  .realmap-hero .cinematic-inner{padding:72px 18px 38px}
+  .realmap-hero h1{font-size:49px}
+  .realmap-hero p{font-size:14px}
+  .realmap-hero .hero-copy{max-width:100%}
+  .realmap-hero .hero-copy:after{width:100%;height:54%;top:64px;background:linear-gradient(180deg,rgba(2,7,13,.89),rgba(2,7,13,.58),transparent)}
+  .map-stage{width:112vw;right:-36%;top:26%;opacity:.48}
+  .truck-photo-wrap{width:92vw;height:35%;right:-28%;bottom:0;opacity:.52}
+  .realmap-hero .broker-strip{grid-template-columns:1fr 1fr;margin-top:32px}
+}

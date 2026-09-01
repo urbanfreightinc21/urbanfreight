@@ -64,3 +64,193 @@ url('assets/hero-network.jpg') center/cover no-repeat;animation:heroDrift 18s ea
 .broker-values{max-width:1240px;margin:10px auto 90px;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr)}.broker-values>div{padding:23px 24px;border-block:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08)}.broker-values>div:first-child{border-left:1px solid rgba(255,255,255,.08)}.broker-values b{display:block;font:700 12px Manrope}.broker-values span{display:block;font-size:10px;color:#75899c;margin-top:5px}.broker-close{max-width:1240px;margin:0 auto 110px;padding:58px;border:1px solid rgba(44,180,255,.22);border-radius:26px;background:radial-gradient(circle at 85% 50%,rgba(18,135,235,.15),transparent 34%),#08101a}.broker-close h2{font-size:clamp(42px,5vw,66px);line-height:1;margin:16px 0}.broker-close p{max-width:720px;color:#91a5b7;line-height:1.7}.close-data{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}.close-data span{padding:9px 12px;border:1px solid rgba(255,255,255,.1);border-radius:999px;font-size:10px;color:#a9bdcd;background:#07101a}
 @media(max-width:950px){.broker-hero{min-height:0}.hero-layout{grid-template-columns:1fr;padding-top:55px}.hero-copy{order:1}.hero-visual{order:2}.broker-strip{max-width:none}.fleet-card,.network-card{grid-template-columns:1fr}.fleet-image{min-height:340px}.network-image{min-height:0;padding:0}.network-image img{width:100%}.broker-values{grid-template-columns:1fr 1fr}.broker-values>div:nth-child(odd){border-left:1px solid rgba(255,255,255,.08)}}
 @media(max-width:560px){.hero-layout{padding:45px 17px 45px}.broker-hero h1{font-size:48px}.broker-hero p{font-size:14px}.broker-strip{grid-template-columns:1fr 1fr}.hero-visual{border-radius:18px}.section-head{margin-bottom:34px}.service-photo{height:175px}.broker-tech{justify-content:flex-start;flex-wrap:wrap}.broker-tech i{display:none}.fleet-image{min-height:245px}.fleet-row{padding:18px 20px}.network-card{border-radius:18px}.market-panel{padding:24px 20px}.broker-values{grid-template-columns:1fr}.broker-values>div{border-left:1px solid rgba(255,255,255,.08)}.broker-close{margin:0 17px 75px;padding:38px 24px}.broker-close h2{font-size:42px}}
+
+
+/* ===== BROKER V3 — FULL-BLEED FUTURISTIC BUILD ===== */
+
+/* Hero returns to a full-width cinematic background. No boxed/zoomed image. */
+.cinematic-hero{
+  min-height:820px;
+  padding-top:78px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  background:#02060b;
+}
+.cinematic-bg{
+  position:absolute;
+  inset:78px 0 0;
+  z-index:-4;
+  background:
+    linear-gradient(90deg,rgba(2,6,11,.94) 0%,rgba(2,6,11,.77) 27%,rgba(2,6,11,.30) 53%,rgba(2,6,11,.11) 73%,rgba(2,6,11,.24) 100%),
+    linear-gradient(0deg,#04080d 0%,rgba(4,8,13,.16) 42%,rgba(4,8,13,.05) 100%),
+    url('hero-future-v3.png') center center / cover no-repeat;
+  transform:scale(1.002);
+}
+.cinematic-bg:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 62% 42%,rgba(20,157,255,.12),transparent 22%);
+}
+.cinematic-grid{
+  position:absolute;
+  inset:78px 0 0;
+  z-index:-3;
+  background-image:
+    linear-gradient(rgba(52,170,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(52,170,255,.035) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.5) 72%,transparent 100%);
+  animation:gridFloat 18s linear infinite;
+}
+@keyframes gridFloat{to{background-position:64px 64px}}
+.cinematic-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(65px);
+  pointer-events:none;
+  z-index:-2;
+}
+.orb1{width:250px;height:250px;left:45%;top:34%;background:rgba(10,137,255,.11);animation:orbPulse 5s ease-in-out infinite}
+.orb2{width:190px;height:190px;right:11%;top:28%;background:rgba(42,185,255,.10);animation:orbPulse 6s ease-in-out infinite 1.2s}
+@keyframes orbPulse{50%{opacity:.45;transform:scale(1.18)}}
+.cinematic-inner{
+  width:100%;
+  max-width:1320px;
+  margin:auto;
+  padding:95px 28px 68px;
+  position:relative;
+  z-index:3;
+}
+.cinematic-inner .hero-copy{max-width:650px}
+.cinematic-hero h1{font-size:clamp(62px,7vw,104px);line-height:.90;margin:20px 0 25px}
+.cinematic-hero h1 span{color:#078cff;-webkit-text-stroke:0}
+.cinematic-hero p{font-size:17px;line-height:1.72;color:#c1cfdb;max-width:590px}
+.cinematic-hero .broker-strip{
+  margin-top:58px;
+  max-width:680px;
+  border-top:1px solid rgba(255,255,255,.15);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.cinematic-hero .broker-strip>div{padding:18px 16px 0 0}
+.cinematic-hero .broker-strip strong{display:block;font:800 15px Manrope;color:#fff}
+.cinematic-hero .broker-strip span{display:block;margin-top:5px;font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#8194a6}
+
+/* Service photos: show the full image instead of cropping/zooming. */
+.visual-services .service-card{overflow:hidden}
+.service-photo{
+  height:auto!important;
+  aspect-ratio:2.55/1;
+  background:#06101a;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+}
+.service-photo img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+  image-rendering:auto;
+}
+.service-card:hover .service-photo img{transform:none!important}
+.service-card:hover{transform:translateY(-5px)}
+
+/* Fleet: image uses its natural ratio, never cover/crop. */
+.fleet-card{align-items:stretch}
+.fleet-image{
+  min-height:0!important;
+  background:#06101a;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.fleet-image img{
+  width:100%!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+  filter:contrast(1.03) saturate(1.04);
+}
+.fleet-card:hover .fleet-image img{transform:none!important}
+
+/* Network: entire continental U.S. remains visible. */
+.network-image{
+  min-height:0!important;
+  padding:0!important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#050d16;
+  overflow:hidden;
+}
+.network-image img{
+  width:100%!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+}
+.network-sweep{
+  height:1px!important;
+  opacity:.45!important;
+}
+
+/* Give the fleet/network sections slightly more futuristic structure. */
+.fleet-card,.network-card{
+  box-shadow:0 30px 90px rgba(0,0,0,.26),0 0 0 1px rgba(32,165,255,.025);
+}
+.fleet-row{
+  position:relative;
+  transition:background .25s ease,padding-left .25s ease;
+}
+.fleet-row:hover{
+  background:rgba(19,153,255,.045);
+  padding-left:28px;
+}
+.fleet-row:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width:2px;
+  height:0;
+  background:#21b5ff;
+  box-shadow:0 0 16px #21b5ff;
+  transition:.25s;
+}
+.fleet-row:hover:before{height:44%;top:28%}
+.market-grid span{transition:color .2s,transform .2s}
+.market-grid span:hover{color:#fff;transform:translateX(4px)}
+
+@media(max-width:950px){
+  .cinematic-hero{min-height:760px}
+  .cinematic-bg{
+    background:
+      linear-gradient(90deg,rgba(2,6,11,.91) 0%,rgba(2,6,11,.67) 42%,rgba(2,6,11,.20) 100%),
+      linear-gradient(0deg,#04080d 0%,rgba(4,8,13,.18) 45%,transparent 100%),
+      url('hero-future-v3.png') 58% center / cover no-repeat;
+  }
+  .cinematic-inner{padding-top:75px}
+  .cinematic-inner .hero-copy{max-width:610px}
+  .fleet-card,.network-card{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .cinematic-hero{min-height:720px}
+  .cinematic-bg{
+    background:
+      linear-gradient(90deg,rgba(2,6,11,.94) 0%,rgba(2,6,11,.72) 58%,rgba(2,6,11,.24) 100%),
+      linear-gradient(0deg,#04080d 0%,rgba(4,8,13,.28) 45%,transparent 100%),
+      url('hero-future-v3.png') 62% center / auto 100% no-repeat;
+  }
+  .cinematic-inner{padding:62px 18px 45px}
+  .cinematic-hero h1{font-size:49px}
+  .cinematic-hero p{font-size:14px}
+  .cinematic-hero .broker-strip{grid-template-columns:1fr 1fr;margin-top:38px}
+  .service-photo{aspect-ratio:2.45/1}
+}

@@ -466,3 +466,120 @@ url('assets/hero-network.jpg') center/cover no-repeat;animation:heroDrift 18s ea
   .truck-photo-wrap{width:92vw;height:35%;right:-28%;bottom:0;opacity:.52}
   .realmap-hero .broker-strip{grid-template-columns:1fr 1fr;margin-top:32px}
 }
+
+
+/* ===== EXACT APPROVED HERO — NO UPSCALING ===== */
+.approved-hero{
+  position:relative;
+  height:422px;
+  min-height:422px;
+  margin-top:78px;
+  overflow:hidden;
+  background:#02070d;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+/* Desktop uses the exact reference pixels. No cover, no zoom, no animation. */
+.approved-desktop-art{
+  position:absolute;
+  inset:0;
+  background-image:url('hero-approved-desktop.jpg');
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:1688px 422px; /* exact native dimensions */
+}
+
+/* Dark side fill naturally handles monitors wider than the source without stretching. */
+.approved-desktop-art:before,
+.approved-desktop-art:after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:max(0px,calc((100vw - 1688px)/2 + 2px));
+  background:#02070d;
+}
+.approved-desktop-art:before{left:0}
+.approved-desktop-art:after{right:0}
+
+.approved-mobile-art,
+.approved-mobile-copy{display:none}
+
+@media(max-width:900px){
+  .approved-hero{
+    margin-top:70px;
+    height:760px;
+    min-height:760px;
+    background:
+      radial-gradient(circle at 72% 30%,rgba(12,137,255,.15),transparent 28%),
+      #02070d;
+  }
+  .approved-desktop-art{display:none}
+  .approved-mobile-art{
+    display:block;
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:390px;
+    background-image:
+      linear-gradient(180deg,#02070d 0%,rgba(2,7,13,.25) 24%,rgba(2,7,13,.05) 100%),
+      url('hero-approved-mobile.jpg');
+    background-repeat:no-repeat;
+    background-position:66% center;
+    background-size:auto 390px; /* scales down from native 422px height */
+    opacity:.86;
+  }
+  .approved-mobile-copy{
+    display:block;
+    position:relative;
+    z-index:3;
+    padding:56px 22px 0;
+    max-width:610px;
+  }
+  .approved-mobile-copy h1{
+    font-family:Manrope,Inter,sans-serif;
+    font-size:clamp(48px,12vw,70px);
+    line-height:.91;
+    letter-spacing:-.05em;
+    text-transform:uppercase;
+    margin:18px 0 20px;
+  }
+  .approved-mobile-copy h1 span{color:#078cff}
+  .approved-mobile-copy p{
+    max-width:520px;
+    color:#c3d0db;
+    font-size:14px;
+    line-height:1.65;
+  }
+  .approved-mobile-copy .broker-strip{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    max-width:520px;
+    margin-top:28px;
+    border-top:1px solid rgba(255,255,255,.13);
+  }
+  .approved-mobile-copy .broker-strip>div{padding:14px 10px 0 0}
+  .approved-mobile-copy .broker-strip strong{
+    display:block;
+    font:800 13px Manrope;
+  }
+  .approved-mobile-copy .broker-strip span{
+    display:block;
+    margin-top:4px;
+    color:#8293a5;
+    font-size:8px;
+    text-transform:uppercase;
+    letter-spacing:.11em;
+  }
+}
+@media(max-width:520px){
+  .approved-hero{height:720px;min-height:720px}
+  .approved-mobile-copy{padding-top:44px}
+  .approved-mobile-copy h1{font-size:48px}
+  .approved-mobile-art{
+    height:335px;
+    background-size:auto 335px;
+    background-position:70% center;
+  }
+}

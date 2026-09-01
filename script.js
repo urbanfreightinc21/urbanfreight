@@ -36,3 +36,11 @@ if (quoteForm) {
     window.location.href = `mailto:dispatch@urbanfreightinc.com?subject=${subject}&body=${body}`;
   });
 }
+
+// Broker V2: subtle, sharp hero motion (image stays in its native panel instead of being stretched full-screen)
+const hv=document.querySelector('.hero-visual');
+const hi=hv?.querySelector('img');
+if(hv&&hi&&matchMedia('(pointer:fine)').matches){
+ hv.addEventListener('mousemove',e=>{const r=hv.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;hi.style.transform=`scale(1.015) translate(${x*-5}px,${y*-4}px)`});
+ hv.addEventListener('mouseleave',()=>hi.style.transform='scale(1.005)');
+}

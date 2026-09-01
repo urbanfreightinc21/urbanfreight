@@ -254,3 +254,43 @@ url('assets/hero-network.jpg') center/cover no-repeat;animation:heroDrift 18s ea
   .cinematic-hero .broker-strip{grid-template-columns:1fr 1fr;margin-top:38px}
   .service-photo{aspect-ratio:2.45/1}
 }
+
+
+/* ===== HEADER FINAL FIX — full composition, no crop/zoom ===== */
+.cinematic-hero{
+  min-height:clamp(680px,45vw,860px)!important;
+}
+.cinematic-bg{
+  inset:78px 0 0!important;
+  background-image:
+    linear-gradient(90deg,rgba(2,6,11,.93) 0%,rgba(2,6,11,.70) 27%,rgba(2,6,11,.28) 50%,rgba(2,6,11,.08) 76%,rgba(2,6,11,.18) 100%),
+    linear-gradient(0deg,#04080d 0%,rgba(4,8,13,.10) 38%,rgba(4,8,13,.02) 100%),
+    url('hero-final.png')!important;
+  background-repeat:no-repeat!important;
+  background-position:center top!important;
+  background-size:100% auto!important;
+  transform:none!important;
+  animation:none!important;
+  filter:none!important;
+}
+.cinematic-bg:after{background:radial-gradient(circle at 62% 42%,rgba(20,157,255,.08),transparent 24%)!important}
+@media(max-width:950px){
+  .cinematic-bg{
+    background-image:
+      linear-gradient(90deg,rgba(2,6,11,.92) 0%,rgba(2,6,11,.70) 42%,rgba(2,6,11,.22) 100%),
+      linear-gradient(0deg,#04080d 0%,rgba(4,8,13,.16) 45%,transparent 100%),
+      url('hero-final.png')!important;
+    background-position:center top!important;
+    background-size:auto 100%!important;
+  }
+}
+@media(max-width:560px){
+  .cinematic-bg{
+    background-image:
+      linear-gradient(90deg,rgba(2,6,11,.94) 0%,rgba(2,6,11,.73) 55%,rgba(2,6,11,.25) 100%),
+      linear-gradient(0deg,#04080d 0%,rgba(4,8,13,.25) 45%,transparent 100%),
+      url('hero-final.png')!important;
+    background-position:58% top!important;
+    background-size:auto 100%!important;
+  }
+}

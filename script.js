@@ -5,7 +5,12 @@ if (menuBtn && mobileNav) {
     const open = mobileNav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+  function closeMenu(){mobileNav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}
+  menuBtn.setAttribute('aria-expanded','false');
+  mobileNav.id='mobile-navigation';menuBtn.setAttribute('aria-controls',mobileNav.id);
+  mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();menuBtn.focus();}});
+  document.addEventListener('click',e=>{if(!mobileNav.contains(e.target)&&!menuBtn.contains(e.target))closeMenu();});
 }
 
 const io = new IntersectionObserver((entries) => {

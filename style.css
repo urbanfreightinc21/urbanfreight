@@ -642,3 +642,8 @@ a:focus-visible,button:focus-visible{outline:3px solid #87d4ff;outline-offset:4p
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 
 @media(min-width:901px){.approved-hero{height:min(25vw,422px);min-height:0}.approved-desktop-art{background-size:min(100vw,1688px) auto}.approved-desktop-art:before,.approved-desktop-art:after{display:none}}
+
+/* Refined navigation tracking treatment */
+.nav-links .tracking-link,.mobile-nav .tracking-link{background:#0d263b;border:1px solid #285b7d;color:#e1f3ff;border-radius:8px;box-shadow:none;font-weight:600}
+.nav-links .tracking-link:hover,.mobile-nav .tracking-link:hover{background:#15364e!important;border-color:#4292bc}
+.footer .tracking-link{background:none;border:0;box-shadow:none;padding:0;font-weight:400}
